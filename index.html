@@ -98,6 +98,86 @@
             font-size: 48px;
         }
 
+        /* Clean DG Logo About Section */
+        .dg-about-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 400px;
+            padding: 2rem;
+        }
+
+        .dg-about-card {
+            background: linear-gradient(135deg, 
+                rgba(var(--bg-rgb), 0.8) 0%, 
+                rgba(var(--accent-rgb), 0.1) 100%);
+            border: 1px solid rgba(var(--accent-rgb), 0.2);
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .dg-about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(var(--accent-rgb), 0.15);
+            border-color: rgba(var(--accent-rgb), 0.3);
+        }
+
+        .dg-logo-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .dg-logo-main {
+            width: 180px;
+            height: 180px;
+            transition: all 0.3s ease;
+        }
+
+        .dg-about-card:hover .dg-logo-main {
+            transform: scale(1.05);
+        }
+
+        .dg-about-text h3 {
+            color: var(--accent-color);
+            font-family: 'Orbitron', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .dg-about-text p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .dg-about-container {
+                padding: 1rem;
+                min-height: 300px;
+            }
+            
+            .dg-about-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .dg-logo-main {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .dg-about-text h3 {
+                font-size: 1.5rem;
+            }
+        }
+
         /* Navigation Button Smaller Size */
         .d2c_nav_btn {
             font-size: 14px !important;
@@ -787,9 +867,38 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 animate-on-scroll animate-slide-left">
-                    <div class="d2c_about_img_wrapper mb-5 mb-lg-0 mx-auto mx-lg-0 image-animated">
-                        <div class="d2c_img_wrapper">
-                            <img src="./assets/images/hero_img.jpg" class="w-100 h-100 rounded-3" alt="Mountain Driving Route">
+                    <div class="dg-about-container">
+                        <div class="dg-about-card">
+                            <div class="dg-logo-container">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="dg-logo-main">
+                                    <defs>
+                                        <linearGradient id="dgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#88c0d0"/>
+                                            <stop offset="50%" style="stop-color:#81a1c1"/>
+                                            <stop offset="100%" style="stop-color:#5e81ac"/>
+                                        </linearGradient>
+                                        
+                                        <filter id="dgGlow">
+                                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                            <feMerge> 
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    
+                                    <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(136, 192, 208, 0.2)" stroke-width="1"/>
+                                    
+                                    <text x="100" y="105" text-anchor="middle" dominant-baseline="central" 
+                                          font-family="'Orbitron', Arial, sans-serif" font-size="72" 
+                                          font-weight="800" fill="url(#dgGradient)" filter="url(#dgGlow)">DG</text>
+                                </svg>
+                            </div>
+                            
+                            <div class="dg-about-text">
+                                <h3>DriveGo</h3>
+                                <p>Epic Driving Routes</p>
+                            </div>
                         </div>
                     </div>
                 </div>

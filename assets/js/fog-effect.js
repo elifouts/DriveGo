@@ -5,7 +5,7 @@ class FogEffect {
         this.ctx = null;
         this.fogLayers = [];
         this.animationId = null;
-        this.colors = ['#458588', '#83a598', '#a89984']; // Default Gruvbox colors
+        this.colors = ['#81a1c1', '#88c0d0', '#5e81ac']; // Default Nordic colors
         this.init();
     }
 

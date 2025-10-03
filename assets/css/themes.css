@@ -1,20 +1,20 @@
 /* DriveGo Theme System */
 
-/* Default Theme Variables (Gruvbox) */
+/* Default Theme Variables (Nordic) */
 :root {
     /* Colors */
-    --bg-color: #1d2021;
-    --bg-rgb: 29, 32, 33;
-    --primary-color: #ebdbb2;
-    --secondary-color: #504945;
-    --accent-color: #83a598;
-    --accent-rgb: 131, 165, 152;
-    --accent-hover: #7bb3a0;
-    --text-color: #f9f5d7;
-    --text-secondary: #bdae93;
-    --border-color: #504945;
-    --card-bg: rgba(80, 73, 69, 0.3);
-    --grid-color: rgba(131, 165, 152, 0.1);
+    --bg-color: #2e3440;
+    --bg-rgb: 46, 52, 64;
+    --primary-color: #d8dee9;
+    --secondary-color: #3b4252;
+    --accent-color: #88c0d0;
+    --accent-rgb: 136, 192, 208;
+    --accent-hover: #7fb4c5;
+    --text-color: #eceff4;
+    --text-secondary: #d8dee9;
+    --border-color: #4c566a;
+    --card-bg: rgba(59, 66, 82, 0.3);
+    --grid-color: rgba(136, 192, 208, 0.1);
     
     /* Legacy support */
     --bg_one: var(--bg-color);
@@ -23,10 +23,10 @@
     --accent_color: var(--accent-color);
     --text_color: var(--text-color);
     --default_color: var(--bg-color);
-    --color_one: #458588;
-    --color_two: #a89984;
+    --color_one: #81a1c1;
+    --color_two: #88c0d0;
     
-    --theme-name: 'gruvbox';
+    --theme-name: 'nord';
 }
 
 /* Nord Theme */
