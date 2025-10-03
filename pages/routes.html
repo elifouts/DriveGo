@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="og:title" content="DriveGo - Explore Driving Routes">
+    <meta name="og:description" content="Discover epic driving routes shared by car enthusiasts worldwide. Filter by difficulty, length, and location.">
+    <title>Explore Routes - DriveGo</title>
+    <link rel="icon" id="favicon" href="../assets/images/favicon.svg" type="image/svg+xml">
+    
+    <!-- CSS Links - STANDARDIZED TO MATCH INDEX EXACTLY -->
+    <link rel="stylesheet" href="../lib/WOW-master/css/libs/animate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="../lib/slick-1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="../lib/slick-1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="../lib/bootstrap-5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-themes.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-color-palette.css">
+    <link rel="stylesheet" href="../assets/css/theme-indicator.css">
+    <link rel="stylesheet" href="../assets/css/theme-indicator.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-ui.css">
+    <link rel="stylesheet" href="../assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-animations.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/auth-styles.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/transparency-override.css">
+    <link rel="stylesheet" href="../assets/css/background-fixes.css">
+    
+    <style>
+        .route-filters {
+            background: var(--secondary_color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .filter-group {
+            margin-bottom: 15px;
+        }
+        
+        .filter-group label {
+            color: var(--text_color);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            background: var(--default_color);
+            border: 1px solid var(--primary_color);
+            color: var(--text_color);
+            border-radius: 8px;
+            padding: 8px 12px;
+            width: 100%;
+        }
+        
+        .route-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .route-card-large {
+            background: rgba(var(--secondary-rgb), 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(var(--accent-rgb), 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .route-card-large::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(var(--accent-rgb), 0.03) 0%, 
+                transparent 40%, 
+                rgba(var(--primary-rgb), 0.03) 100%);
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .route-card-large:hover::before {
+            opacity: 1;
+        }
+        
+        .route-card-large:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border-color: rgba(var(--accent-rgb), 0.6);
+        }
+        
+        .route-card-large > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .route-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .route-info h4 {
+            color: var(--text_color);
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .route-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .route-location {
+            color: var(--primary_color);
+            font-size: 14px;
+        }
+        
+        .route-difficulty {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .difficulty-easy {
+            background: rgba(72, 158, 72, 0.2);
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+        
+        .difficulty-moderate {
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFC107;
+            border: 1px solid #FFC107;
+        }
+        
+        .difficulty-hard {
+            background: rgba(220, 53, 69, 0.2);
+            color: #DC3545;
+            border: 1px solid #DC3545;
+        }
+        
+        .route-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary_color);
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Start -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <nav class="header-nav">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a href="../index.html" class="logo-link">
+                        <span class="drivego-logo">DriveGo</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="header-nav-items">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="routes.html" class="nav-link active">Routes</a></li>
+                        <li class="nav-item"><a href="map.html" class="nav-link">Map</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Community</a></li>
+                        <li class="nav-item"><a href="settings.html" class="nav-link">Settings</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                        </button>
+                        <button class="auth-btn" id="auth-button">
+                            <i class="fas fa-user"></i>
+                            <span>Sign In</span>
+                        </button>
+                        <a href="add-route.html" class="cta-btn user-only" style="display: none;">
+                            <i class="fas fa-plus"></i>
+                            Add Route
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav" id="mobile-nav">
+                <div class="mobile-nav-content">
+                    <ul class="mobile-nav-list">
+                        <li><a href="../index.html" class="mobile-nav-link">Home</a></li>
+                        <li><a href="routes.html" class="mobile-nav-link active">Routes</a></li>
+                        <li><a href="map.html" class="mobile-nav-link">Map</a></li>
+                        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+                        <li><a href="contact.html" class="mobile-nav-link">Community</a></li>
+                        <li><a href="settings.html" class="mobile-nav-link">Settings</a></li>
+                        <li class="user-only" style="display: none;"><a href="add-route.html" class="mobile-nav-link cta">Add Route</a></li>
+                    </ul>
+                    
+                    <div class="mobile-auth-section">
+                        <button class="mobile-theme-toggle-btn" id="mobile-theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                            Change Theme
+                        </button>
+                        <button class="mobile-auth-btn" id="mobile-auth-button">
+                            <i class="fas fa-user"></i>
+                            Sign In
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Page Header -->
+    <section class="d2c_hero_wrapper" style="padding: 120px 0 80px;">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="page-title">Explore Driving Routes</h1>
+                <p class="page-subtitle">Discover epic routes shared by fellow car enthusiasts</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Routes Section -->
+    <section class="d2c_services_wrapper">
+        <div class="container">
+            <!-- Filters -->
+            <div class="route-filters wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="filter-group">
+                            <label>Difficulty</label>
+                            <select id="difficultyFilter">
+                                <option value="">All Difficulties</option>
+                                <option value="easy">Easy</option>
+                                <option value="moderate">Moderate</option>
+                                <option value="hard">Hard</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="filter-group">
+                            <label>Location</label>
+                            <select id="locationFilter">
+                                <option value="">All Locations</option>
+                                <option value="california">California</option>
+                                <option value="montana">Montana</option>
+                                <option value="virginia">Virginia</option>
+                                <option value="colorado">Colorado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="filter-group">
+                            <label>Length</label>
+                            <select id="lengthFilter">
+                                <option value="">Any Length</option>
+                                <option value="short">Under 50 miles</option>
+                                <option value="medium">50-200 miles</option>
+                                <option value="long">200+ miles</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="filter-group">
+                            <label>Search</label>
+                            <input type="text" id="searchInput" placeholder="Search routes...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Routes Grid -->
+            <div class="route-grid" id="routesGrid">
+                <!-- Sample Route Cards -->
+                <div class="route-card-large wow fadeInUp" data-difficulty="easy" data-location="california" data-length="long">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop" alt="Pacific Coast Highway" class="route-image">
+                    <div class="route-info">
+                        <div class="route-meta">
+                            <span class="route-location">California</span>
+                            <span class="route-difficulty difficulty-easy">Easy</span>
+                        </div>
+                        <h4>Pacific Coast Highway</h4>
+                        <p>One of the most scenic coastal drives in the world, offering breathtaking ocean views and charming seaside towns.</p>
+                        <div class="route-stats">
+                            <span class="stat"><i class="fas fa-route"></i> 656 miles</span>
+                            <span class="stat"><i class="fas fa-clock"></i> 12 hours</span>
+                            <span class="stat"><i class="fas fa-heart"></i> 487</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="route-card-large wow fadeInUp" data-difficulty="moderate" data-location="virginia" data-length="long" data-wow-delay="0.1s">
+                    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=200&fit=crop" alt="Blue Ridge Parkway" class="route-image">
+                    <div class="route-info">
+                        <div class="route-meta">
+                            <span class="route-location">Virginia/North Carolina</span>
+                            <span class="route-difficulty difficulty-moderate">Moderate</span>
+                        </div>
+                        <h4>Blue Ridge Parkway</h4>
+                        <p>A stunning mountain drive through the Appalachians with incredible fall foliage and panoramic vistas.</p>
+                        <div class="route-stats">
+                            <span class="stat"><i class="fas fa-route"></i> 469 miles</span>
+                            <span class="stat"><i class="fas fa-clock"></i> 8 hours</span>
+                            <span class="stat"><i class="fas fa-heart"></i> 342</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="route-card-large wow fadeInUp" data-difficulty="hard" data-location="montana" data-length="short" data-wow-delay="0.2s">
+                    <img src="https://images.unsplash.com/photo-1544620917-4552e6b3f8d9?w=400&h=200&fit=crop" alt="Going-to-the-Sun Road" class="route-image">
+                    <div class="route-info">
+                        <div class="route-meta">
+                            <span class="route-location">Montana</span>
+                            <span class="route-difficulty difficulty-hard">Hard</span>
+                        </div>
+                        <h4>Going-to-the-Sun Road</h4>
+                        <p>A challenging alpine road through Glacier National Park with narrow passages and dramatic elevation changes.</p>
+                        <div class="route-stats">
+                            <span class="stat"><i class="fas fa-route"></i> 50 miles</span>
+                            <span class="stat"><i class="fas fa-clock"></i> 3 hours</span>
+                            <span class="stat"><i class="fas fa-heart"></i> 278</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="route-card-large wow fadeInUp" data-difficulty="moderate" data-location="colorado" data-length="medium" data-wow-delay="0.3s">
+                    <img src="https://images.unsplash.com/photo-1440686584716-d8b66e2bc58a?w=400&h=200&fit=crop" alt="Trail Ridge Road" class="route-image">
+                    <div class="route-info">
+                        <div class="route-meta">
+                            <span class="route-location">Colorado</span>
+                            <span class="route-difficulty difficulty-moderate">Moderate</span>
+                        </div>
+                        <h4>Trail Ridge Road</h4>
+                        <p>The highest continuous paved road in North America, crossing the Continental Divide in Rocky Mountain National Park.</p>
+                        <div class="route-stats">
+                            <span class="stat"><i class="fas fa-route"></i> 48 miles</span>
+                            <span class="stat"><i class="fas fa-clock"></i> 2 hours</span>
+                            <span class="stat"><i class="fas fa-heart"></i> 195</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="route-card-large wow fadeInUp" data-difficulty="easy" data-location="california" data-length="medium" data-wow-delay="0.4s">
+                    <img src="https://images.unsplash.com/photo-1507764740877-87a2c5daadb7?w=400&h=200&fit=crop" alt="Napa Valley Drive" class="route-image">
+                    <div class="route-info">
+                        <div class="route-meta">
+                            <span class="route-location">California</span>
+                            <span class="route-difficulty difficulty-easy">Easy</span>
+                        </div>
+                        <h4>Napa Valley Scenic Drive</h4>
+                        <p>A leisurely drive through world-famous wine country with rolling hills and picturesque vineyards.</p>
+                        <div class="route-stats">
+                            <span class="stat"><i class="fas fa-route"></i> 35 miles</span>
+                            <span class="stat"><i class="fas fa-clock"></i> 1.5 hours</span>
+                            <span class="stat"><i class="fas fa-heart"></i> 156</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More routes can be added here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button class="btn wow fadeInUp" id="loadMoreBtn">Load More Routes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="d2c_footer_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
+                    <a href="../index.html" class="wow fadeInUp" data-wow-delay="0.2s"><span class="drivego-logo">DriveGo</span></a>
+                    <p class="mb-0 wow fadeInUp" data-wow-delay="0.4s">The ultimate platform for car enthusiasts to discover and share epic driving routes.</p>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-md-0 wow fadeInUp">
+                    <div class="d2c_contact_details">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Quick Links</h5>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.4s">
+                            <a href="routes.html" class="d2c_icon_wrapper"><i class="fas fa-road"></i></a>
+                            <p class="mb-0"><a href="routes.html" style="color: var(--text_color); text-decoration: none;">Explore Routes</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.6s">
+                            <a href="map.html" class="d2c_icon_wrapper"><i class="fas fa-map"></i></a>
+                            <p class="mb-0"><a href="map.html" style="color: var(--text_color); text-decoration: none;">Interactive Map</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center wow fadeInLeft" data-wow-delay="0.8s">
+                            <a href="contact.html" class="d2c_icon_wrapper"><i class="fas fa-users"></i></a>
+                            <p class="mb-0"><a href="contact.html" style="color: var(--text_color); text-decoration: none;">Join Community</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInRight">
+                    <div class="d2c_footer_newsletter">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Stay Connected</h5>
+                        <form class="needs-validation wow fadeInUp" data-wow-delay="0.4s" novalidate>
+                            <input type="email" class="form-control" placeholder="Get route updates & news:" required>
+                            <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                        </form>
+                        <ul class="list-group list-group-horizontal wow fadeInUp" data-wow-delay="0.6s">
+                            <li class="wow fadeInLeft" data-wow-delay="0.8s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1.2s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="d2c_copy_right_wrapper wow fadeInUp" data-wow-delay="0.5s">
+                <p class="mb-0 text-center">Copyright &copy; 2025 DriveGo. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../lib/WOW-master/dist/wow.min.js"></script>
+    <script src="../lib/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/slick-1.8.1/slick/slick.min.js"></script>
+    
+    <!-- Core JS -->
+    <script src="../assets/js/themes.js"></script>
+    <script src="../assets/js/unified-animations.js"></script>
+    <script src="../assets/js/auth-handler.js"></script>
+    <script src="../assets/js/notifications.js"></script>
+    <script src="../assets/js/enhanced-interactions.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/simple-theme-toggle.js"></script>
+    <script src="../assets/js/email-popup.js"></script>
+
+    <script>
+        // Filter functionality
+        function filterRoutes() {
+            const difficulty = document.getElementById('difficultyFilter').value;
+            const location = document.getElementById('locationFilter').value.toLowerCase();
+            const length = document.getElementById('lengthFilter').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+
+            const routeCards = document.querySelectorAll('.route-card-large');
+
+            routeCards.forEach(card => {
+                let show = true;
+
+                // Difficulty filter
+                if (difficulty && !card.dataset.difficulty.includes(difficulty)) {
+                    show = false;
+                }
+
+                // Location filter
+                if (location && !card.dataset.location.includes(location)) {
+                    show = false;
+                }
+
+                // Length filter
+                if (length && !card.dataset.length.includes(length)) {
+                    show = false;
+                }
+
+                // Search filter
+                if (search && !card.textContent.toLowerCase().includes(search)) {
+                    show = false;
+                }
+
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Event listeners
+        document.getElementById('difficultyFilter').addEventListener('change', filterRoutes);
+        document.getElementById('locationFilter').addEventListener('change', filterRoutes);
+        document.getElementById('lengthFilter').addEventListener('change', filterRoutes);
+        document.getElementById('searchInput').addEventListener('input', filterRoutes);
+
+        // Route card click handlers
+        document.querySelectorAll('.route-card-large').forEach(card => {
+            card.addEventListener('click', function() {
+                const routeName = this.querySelector('h4').textContent;
+                alert(`Opening details for: ${routeName}\n(This would navigate to route details page)`);
+            });
+        });
+
+        // Load more functionality
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            alert('Loading more routes...\n(This would fetch additional routes from the server)');
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+

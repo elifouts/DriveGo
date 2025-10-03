@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="og:title" content="DriveGo - Interactive Route Map">
+    <meta name="og:description" content="Explore driving routes on our interactive map. Find routes near you and plan your next adventure.">
+    <title>Interactive Map - DriveGo</title>
+    <link rel="icon" id="favicon" href="../assets/images/favicon.svg" type="image/svg+xml">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../lib/WOW-master/css/libs/animate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="../lib/slick-1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="../lib/slick-1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="../lib/bootstrap-5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-themes.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-color-palette.css">
+    <link rel="stylesheet" href="../assets/css/theme-indicator.css">
+    <link rel="stylesheet" href="../assets/css/theme-indicator.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-ui.css">
+    <link rel="stylesheet" href="../assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-animations.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/auth-styles.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/transparency-override.css">
+    <link rel="stylesheet" href="../assets/css/background-fixes.css">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <style>
+        .map-container {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .map-controls {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(60, 56, 54, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--secondary_color);
+        }
+        
+        .map-controls h5 {
+            color: var(--text_color);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .control-group {
+            margin-bottom: 10px;
+        }
+        
+        .control-group label {
+            color: var(--primary_color);
+            font-size: 12px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .control-group select,
+        .control-group input {
+            background: var(--default_color);
+            border: 1px solid var(--primary_color);
+            color: var(--text_color);
+            border-radius: 6px;
+            padding: 6px 10px;
+            width: 200px;
+            font-size: 12px;
+        }
+        
+        .route-popup {
+            max-width: 250px;
+        }
+        
+        .route-popup h6 {
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .route-popup p {
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #5a6c7d;
+        }
+        
+        .route-popup .route-stats {
+            display: flex;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .route-popup .stat {
+            font-size: 11px;
+            color: #7f8c8d;
+        }
+        
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(60, 56, 54, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--secondary_color);
+        }
+        
+        .legend h6 {
+            color: var(--text_color);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            margin-right: 8px;
+            border-radius: 2px;
+        }
+        
+        .legend-text {
+            color: var(--primary_color);
+            font-size: 12px;
+        }
+        
+        .stats-panel {
+            background: var(--secondary_color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent_color);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text_color);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Custom Leaflet Popup Styling */
+        .leaflet-popup-content-wrapper {
+            background: transparent !important;
+            border-radius: 8px !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+        
+        .leaflet-popup-content {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        
+        .leaflet-popup-tip {
+            background: var(--card-bg) !important;
+            border: 1px solid rgba(var(--border-rgb), 0.3) !important;
+        }
+        
+        .leaflet-container {
+            background: #2d3748 !important;
+        }
+        
+        /* Custom marker hover effect */
+        .custom-marker:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Start -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <nav class="header-nav">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a href="../index.html" class="logo-link">
+                        <span class="drivego-logo">DriveGo</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="header-nav-items">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="routes.html" class="nav-link">Routes</a></li>
+                        <li class="nav-item"><a href="map.html" class="nav-link active">Map</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Community</a></li>
+                        <li class="nav-item"><a href="settings.html" class="nav-link">Settings</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                        </button>
+                        <button class="auth-btn" id="auth-button">
+                            <i class="fas fa-user"></i>
+                            <span>Sign In</span>
+                        </button>
+                        <a href="add-route.html" class="cta-btn user-only" style="display: none;">
+                            <i class="fas fa-plus"></i>
+                            Add Route
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav" id="mobile-nav">
+                <div class="mobile-nav-content">
+                    <ul class="mobile-nav-list">
+                        <li><a href="../index.html" class="mobile-nav-link">Home</a></li>
+                        <li><a href="routes.html" class="mobile-nav-link">Routes</a></li>
+                        <li><a href="map.html" class="mobile-nav-link active">Map</a></li>
+                        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+                        <li><a href="contact.html" class="mobile-nav-link">Community</a></li>
+                        <li><a href="settings.html" class="mobile-nav-link">Settings</a></li>
+                        <li class="user-only" style="display: none;"><a href="add-route.html" class="mobile-nav-link cta">Add Route</a></li>
+                    </ul>
+                    
+                    <div class="mobile-auth-section">
+                        <button class="mobile-theme-toggle-btn" id="mobile-theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                            Change Theme
+                        </button>
+                        <button class="mobile-auth-btn" id="mobile-auth-button">
+                            <i class="fas fa-user"></i>
+                            Sign In
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Page Header -->
+    <section class="d2c_hero_wrapper" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="page-title">Interactive Route Map</h1>
+                <p class="page-subtitle">Explore driving routes on our interactive map and find your next adventure</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Panel -->
+    <section class="d2c_services_wrapper" style="padding-top: 0;">
+        <div class="container">
+            <div class="stats-panel wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-box">
+                            <span class="stat-number">1,247</span>
+                            <div class="stat-label">Total Routes</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-box">
+                            <span class="stat-number">48</span>
+                            <div class="stat-label">States Covered</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-box">
+                            <span class="stat-number">15,823</span>
+                            <div class="stat-label">Miles Mapped</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-box">
+                            <span class="stat-number">3,456</span>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="d2c_services_wrapper" style="padding-top: 0;">
+        <div class="container">
+            <div class="map-container wow fadeInUp">
+                <div class="map-controls">
+                    <h5><i class="fas fa-filter"></i> Filters</h5>
+                    <div class="control-group">
+                        <label>Difficulty</label>
+                        <select id="difficultyFilter">
+                            <option value="">All</option>
+                            <option value="easy">Easy</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Length</label>
+                        <select id="lengthFilter">
+                            <option value="">All</option>
+                            <option value="short">Under 50 miles</option>
+                            <option value="medium">50-200 miles</option>
+                            <option value="long">200+ miles</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Search Location</label>
+                        <input type="text" id="locationSearch" placeholder="Enter city or state...">
+                    </div>
+                </div>
+
+                <div class="legend">
+                    <h6><i class="fas fa-map-signs"></i> Route Types</h6>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #4CAF50;"></div>
+                        <span class="legend-text">Easy Routes</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FFC107;"></div>
+                        <span class="legend-text">Moderate Routes</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #DC3545;"></div>
+                        <span class="legend-text">Hard Routes</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #17A2B8;"></div>
+                        <span class="legend-text">Featured Routes</span>
+                    </div>
+                </div>
+
+                <div id="map"></div>
+            </div>
+
+            <!-- Map Instructions -->
+            <div class="row mt-4">
+                <div class="col-md-6 wow fadeInLeft">
+                    <h5 style="color: var(--text_color);">How to Use the Map</h5>
+                    <ul style="color: var(--primary_color);">
+                        <li>Click on route markers to see details</li>
+                        <li>Use filters to find specific types of routes</li>
+                        <li>Zoom in to see more detailed route information</li>
+                        <li>Search for routes in specific locations</li>
+                    </ul>
+                </div>
+                <div class="col-md-6 wow fadeInRight">
+                    <h5 style="color: var(--text_color);">Route Information</h5>
+                    <p style="color: var(--primary_color);">Each route marker contains detailed information including difficulty level, estimated drive time, scenic highlights, and user ratings. Click on any marker to explore a route or get directions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="d2c_footer_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
+                    <a href="../index.html" class="wow fadeInUp" data-wow-delay="0.2s"><span class="drivego-logo">DriveGo</span></a>
+                    <p class="mb-0 wow fadeInUp" data-wow-delay="0.4s">The ultimate platform for car enthusiasts to discover and share epic driving routes.</p>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-md-0 wow fadeInUp">
+                    <div class="d2c_contact_details">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Quick Links</h5>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.4s">
+                            <a href="routes.html" class="d2c_icon_wrapper"><i class="fas fa-road"></i></a>
+                            <p class="mb-0"><a href="routes.html" style="color: var(--text_color); text-decoration: none;">Explore Routes</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.6s">
+                            <a href="map.html" class="d2c_icon_wrapper"><i class="fas fa-map"></i></a>
+                            <p class="mb-0"><a href="map.html" style="color: var(--text_color); text-decoration: none;">Interactive Map</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center wow fadeInLeft" data-wow-delay="0.8s">
+                            <a href="contact.html" class="d2c_icon_wrapper"><i class="fas fa-users"></i></a>
+                            <p class="mb-0"><a href="contact.html" style="color: var(--text_color); text-decoration: none;">Join Community</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInRight">
+                    <div class="d2c_footer_newsletter">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Stay Connected</h5>
+                        <form class="needs-validation wow fadeInUp" data-wow-delay="0.4s" novalidate>
+                            <input type="email" class="form-control" placeholder="Get route updates & news:" required>
+                            <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                        </form>
+                        <ul class="list-group list-group-horizontal wow fadeInUp" data-wow-delay="0.6s">
+                            <li class="wow fadeInLeft" data-wow-delay="0.8s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1.2s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="d2c_copy_right_wrapper wow fadeInUp" data-wow-delay="0.5s">
+                <p class="mb-0 text-center">Copyright &copy; 2025 DriveGo. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../lib/WOW-master/dist/wow.min.js"></script>
+    <script src="../lib/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/slick-1.8.1/slick/slick.min.js"></script>
+
+    <script src="../assets/js/themes.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/simple-theme-toggle.js"></script>
+    <script src="../assets/js/email-popup.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+        // Initialize map
+        let map = L.map('map').setView([39.8283, -98.5795], 4); // Center of US
+
+        // Add dark tile layer
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap contributors © CARTO',
+            subdomains: 'abcd',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Sample route data
+        const routes = [
+            {
+                name: "Pacific Coast Highway",
+                coords: [36.9741, -122.0308],
+                difficulty: "easy",
+                length: "long",
+                miles: 656,
+                time: "12 hours",
+                likes: 487,
+                description: "Stunning coastal drive with ocean views"
+            },
+            {
+                name: "Blue Ridge Parkway", 
+                coords: [35.5951, -82.5515],
+                difficulty: "moderate",
+                length: "long",
+                miles: 469,
+                time: "8 hours",
+                likes: 342,
+                description: "Mountain drive through the Appalachians"
+            },
+            {
+                name: "Going-to-the-Sun Road",
+                coords: [48.6960, -113.8822],
+                difficulty: "hard",
+                length: "short",
+                miles: 50,
+                time: "3 hours",
+                likes: 278,
+                description: "Alpine road through Glacier National Park"
+            },
+            {
+                name: "Trail Ridge Road",
+                coords: [40.3428, -105.6836],
+                difficulty: "moderate",
+                length: "short",
+                miles: 48,
+                time: "2 hours",
+                likes: 195,
+                description: "Highest paved road in North America"
+            },
+            {
+                name: "Napa Valley Scenic Drive",
+                coords: [38.5025, -122.2654],
+                difficulty: "easy",
+                length: "short",
+                miles: 35,
+                time: "1.5 hours",
+                likes: 156,
+                description: "Drive through world-famous wine country"
+            }
+        ];
+
+        let markers = [];
+
+        // Function to get marker color based on difficulty
+        function getMarkerColor(difficulty) {
+            switch(difficulty) {
+                case 'easy': return '#22c55e';     // Green - easy
+                case 'moderate': return '#f59e0b'; // Orange - moderate  
+                case 'hard': return '#dc2626';     // Red - hard
+                default: return '#06b6d4';         // Cyan - unknown
+            }
+        }
+
+        // Function to create custom marker icon
+        function createMarkerIcon(difficulty) {
+            return L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="
+                    background: linear-gradient(135deg, ${getMarkerColor(difficulty)}, ${getMarkerColor(difficulty)}dd);
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 50%;
+                    border: 2px solid rgba(255,255,255,0.9);
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 0 0 3px rgba(${getMarkerColor(difficulty).slice(1)}, 0.3);
+                    position: relative;
+                "></div>`,
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            });
+        }
+
+        // Function to add routes to map
+        function addRoutesToMap(routesToShow = routes) {
+            // Clear existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            routesToShow.forEach(route => {
+                const marker = L.marker(route.coords, {
+                    icon: createMarkerIcon(route.difficulty)
+                }).addTo(map);
+
+                const popupContent = `
+                    <div class="route-popup" style="
+                        background: var(--card-bg);
+                        backdrop-filter: blur(12px);
+                        border: 1px solid rgba(var(--border-rgb), 0.3);
+                        border-radius: 8px;
+                        padding: 15px;
+                        color: var(--text-color);
+                        box-shadow: 0 8px 32px var(--shadow-color);
+                        min-width: 200px;
+                    ">
+                        <h6 style="
+                            color: var(--accent-color);
+                            margin: 0 0 8px 0;
+                            font-size: 16px;
+                            font-weight: 600;
+                        ">${route.name}</h6>
+                        <p style="
+                            color: var(--text-secondary);
+                            margin: 0 0 12px 0;
+                            font-size: 14px;
+                            line-height: 1.4;
+                        ">${route.description}</p>
+                        <div style="
+                            display: flex;
+                            gap: 12px;
+                            margin-bottom: 12px;
+                            flex-wrap: wrap;
+                        ">
+                            <span style="
+                                color: var(--text-color);
+                                font-size: 12px;
+                                background: rgba(var(--accent-rgb), 0.1);
+                                padding: 4px 8px;
+                                border-radius: 4px;
+                            "><i class="fas fa-route"></i> ${route.miles} miles</span>
+                            <span style="
+                                color: var(--text-color);
+                                font-size: 12px;
+                                background: rgba(var(--accent-rgb), 0.1);
+                                padding: 4px 8px;
+                                border-radius: 4px;
+                            "><i class="fas fa-clock"></i> ${route.time}</span>
+                            <span style="
+                                color: var(--text-color);
+                                font-size: 12px;
+                                background: rgba(var(--accent-rgb), 0.1);
+                                padding: 4px 8px;
+                                border-radius: 4px;
+                            "><i class="fas fa-heart"></i> ${route.likes}</span>
+                        </div>
+                        <div style="
+                            background: ${getMarkerColor(route.difficulty)};
+                            color: white;
+                            padding: 4px 8px;
+                            border-radius: 4px;
+                            display: inline-block;
+                            font-size: 11px;
+                            font-weight: 600;
+                            text-transform: uppercase;
+                            margin-bottom: 12px;
+                        ">${route.difficulty}</div>
+                        <div>
+                            <button onclick="viewRouteDetails('${route.name}')" style="
+                                background: var(--accent-color);
+                                color: var(--bg-color);
+                                border: none;
+                                padding: 8px 16px;
+                                border-radius: 6px;
+                                font-size: 13px;
+                                font-weight: 600;
+                                cursor: pointer;
+                                transition: all 0.2s ease;
+                                width: 100%;
+                            " onmouseover="this.style.background='var(--accent-hover)'"
+                               onmouseout="this.style.background='var(--accent-color)'">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                marker.bindPopup(popupContent);
+                markers.push(marker);
+            });
+        }
+
+        // Filter routes
+        function filterRoutes() {
+            const difficulty = document.getElementById('difficultyFilter').value;
+            const length = document.getElementById('lengthFilter').value;
+            const searchLocation = document.getElementById('locationSearch').value.toLowerCase();
+
+            let filteredRoutes = routes.filter(route => {
+                let matches = true;
+
+                if (difficulty && route.difficulty !== difficulty) {
+                    matches = false;
+                }
+
+                if (length && route.length !== length) {
+                    matches = false;
+                }
+
+                if (searchLocation && !route.name.toLowerCase().includes(searchLocation)) {
+                    matches = false;
+                }
+
+                return matches;
+            });
+
+            addRoutesToMap(filteredRoutes);
+        }
+
+        // Search location functionality
+        function searchLocation() {
+            const location = document.getElementById('locationSearch').value;
+            if (location) {
+                // In a real app, you'd use a geocoding service
+                // For demo, we'll just filter routes
+                filterRoutes();
+            }
+        }
+
+        // Event listeners
+        document.getElementById('difficultyFilter').addEventListener('change', filterRoutes);
+        document.getElementById('lengthFilter').addEventListener('change', filterRoutes);
+        document.getElementById('locationSearch').addEventListener('input', filterRoutes);
+
+        // View route details function
+        function viewRouteDetails(routeName) {
+            alert(`Opening details for: ${routeName}\n(This would navigate to route details page)`);
+        }
+
+        // Initialize routes on map
+        addRoutesToMap();
+
+        // Map click handler for adding new routes
+        map.on('click', function(e) {
+            const lat = e.latlng.lat.toFixed(4);
+            const lng = e.latlng.lng.toFixed(4);
+            
+            if (confirm(`Add a new route at coordinates: ${lat}, ${lng}?`)) {
+                // In a real app, this would open the add route form
+                alert('This would open the "Add Route" form with these coordinates pre-filled.');
+            }
+        });
+    </script>
+    <script src="../assets/js/auth-handler.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

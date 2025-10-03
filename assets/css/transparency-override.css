@@ -1,0 +1,157 @@
+/* DriveGo Transparency Rules - Only Grid Background and Solid Elements */
+
+/* Body gets theme background */
+body {
+    background: var(--bg-color) !important;
+}
+
+/* ALL sections and containers transparent for grid visibility */
+section,
+.hero-banner,
+.d2c_about_wrapper,
+.d2c_services_wrapper,
+.community-showcase,
+.d2c_c2a_wrapper,
+.featured-routes-section,
+.container,
+.container-fluid,
+.row,
+.col,
+.col-lg-6,
+.col-md-6,
+.col-sm-12,
+.col-lg-4,
+.col-md-4 {
+    background: transparent !important;
+}
+
+/* Make header completely transparent except blur effect */
+.main-header {
+    background: rgba(var(--bg-rgb), 0.1) !important;
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.1);
+}
+
+/* Cards get solid backgrounds - no transparency */
+.feature-card,
+.route-card,
+.community-card,
+.d2c_service_card,
+.card,
+.stats-card,
+.hero-content,
+.hero-visual,
+.floating-route-card,
+.hero-dashboard,
+.stat-card {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+}
+
+/* Remove all wrapper backgrounds */
+.d2c_about_img_wrapper,
+.d2c_img_wrapper {
+    background: transparent !important;
+}
+
+/* Make footer transparent */
+.d2c_footer_wrapper {
+    background: transparent !important;
+    backdrop-filter: none !important;
+}
+
+/* Ensure preloader uses theme background */
+.preloader {
+    background: var(--bg-color) !important;
+}
+
+/* Remove any remaining backgrounds from ALL elements */
+* {
+    background-color: transparent !important;
+}
+
+/* Restore only essential backgrounds */
+body {
+    background: var(--bg-color) !important;
+}
+
+.main-header {
+    background: rgba(var(--bg-rgb), 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+}
+
+.preloader {
+    background: var(--bg-color) !important;
+}
+
+/* Ensure text remains readable with shadows */
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+p, span, a {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Special handling for buttons to keep them visible */
+.btn,
+.cta-btn,
+.auth-btn,
+.mobile-auth-btn,
+button {
+    background: rgba(var(--accent-rgb), 0.1) !important;
+    border: 2px solid var(--accent-color) !important;
+    color: var(--accent-color) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.btn:hover,
+.cta-btn:hover,
+.auth-btn:hover,
+.mobile-auth-btn:hover,
+button:hover {
+    background: var(--accent-color) !important;
+    color: var(--bg-color) !important;
+}
+
+/* Keep navigation text visible */
+.nav-link,
+.mobile-nav-link {
+    background: transparent !important;
+}
+
+/* Solid backgrounds for UI elements */
+.modal-content,
+.auth-modal-content,
+.user-menu-dropdown,
+.dropdown-menu,
+.form-control,
+.footer,
+.d2c_footer_wrapper,
+footer {
+    background: var(--card-bg) !important;
+}
+
+/* Footer gets secondary color background */
+.footer,
+.d2c_footer_wrapper,
+footer {
+    background: var(--secondary-color) !important;
+}
+
+/* Header keeps blur effect only */
+.main-header {
+    background: rgba(var(--bg-rgb), 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.1);
+}
+
+/* Ensure form elements are visible */
+input,
+textarea,
+select {
+    background: rgba(var(--bg-rgb), 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+}

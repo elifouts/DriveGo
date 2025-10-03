@@ -1,0 +1,46 @@
+/* Theme Indicator - Subtle visual feedback */
+
+.theme-indicator {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(var(--glass-bg-rgb), 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-color);
+    z-index: 9999;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.theme-indicator.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.theme-indicator::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.6);
+}
+
+/* Hide on mobile to avoid clutter */
+@media (max-width: 768px) {
+    .theme-indicator {
+        display: none;
+    }
+}

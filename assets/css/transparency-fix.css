@@ -1,0 +1,86 @@
+/* Complete Transparency Fix for DriveGo Grid Background */
+
+/* Make body transparent to show grid background */
+body {
+    background: transparent !important;
+}
+
+/* Ensure main containers are transparent */
+.d2c_about_wrapper,
+.d2c_services_wrapper,
+.community-showcase,
+.d2c_c2a_wrapper {
+    background: transparent !important;
+}
+
+/* Make hero section semi-transparent */
+.hero-banner {
+    background: rgba(var(--bg-rgb), 0.1) !important;
+}
+
+/* Add subtle background to hero content for readability */
+.hero-content {
+    background: rgba(var(--bg-rgb), 0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
+}
+
+/* Make cards semi-transparent with backdrop blur */
+.feature-card,
+.route-card,
+.community-card,
+.d2c_service_card {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+}
+
+/* Make containers with content semi-transparent */
+.container {
+    position: relative;
+}
+
+/* Add subtle background to content sections for readability */
+.d2c_about_wrapper .container,
+.d2c_services_wrapper .container,
+.community-showcase .container {
+    background: rgba(var(--bg-rgb), 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid rgba(var(--accent-rgb), 0.1);
+}
+
+/* Fix any solid backgrounds that block the grid */
+.d2c_img_wrapper,
+.d2c_about_img_wrapper {
+    background: rgba(var(--primary-rgb, 235, 219, 178), 0.1) !important;
+}
+
+/* Ensure preloader doesn't have solid background */
+.preloader {
+    background: rgba(var(--bg-rgb), 0.95) !important;
+    backdrop-filter: blur(20px);
+}
+
+/* Make footer semi-transparent */
+.d2c_footer_wrapper {
+    background: rgba(var(--bg-rgb), 0.9) !important;
+    backdrop-filter: blur(15px);
+}
+
+/* Ensure any remaining solid backgrounds are transparent */
+section:not(.hero-banner) {
+    background: transparent !important;
+}
+
+/* Fix any remaining container backgrounds */
+.row,
+.col,
+.col-lg-6,
+.col-md-6,
+.col-sm-12 {
+    background: transparent !important;
+}

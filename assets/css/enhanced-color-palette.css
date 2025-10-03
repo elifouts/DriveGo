@@ -1,0 +1,531 @@
+/* Enhanced Theme Color Palette System - Rich Color Variety */
+
+/* Add these color variables to each theme for better variety and contrast */
+
+/* Success/Error/Warning/Info colors for each theme */
+:root {
+    /* Enhanced Color Palette - Midnight Theme */
+    --success-color: #10b981;
+    --success-bg: rgba(16, 185, 129, 0.1);
+    --error-color: #ef4444;
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --warning-color: #f59e0b;
+    --warning-bg: rgba(245, 158, 11, 0.1);
+    --info-color: #3b82f6;
+    --info-bg: rgba(59, 130, 246, 0.1);
+    
+    /* Secondary accent colors */
+    --accent-secondary: #06b6d4;
+    --accent-tertiary: #8b5cf6;
+    --accent-quaternary: #ec4899;
+    
+    /* Card variations */
+    --card-highlight: rgba(6, 182, 212, 0.1);
+    --card-secondary: rgba(30, 41, 59, 0.8);
+    --card-tertiary: rgba(51, 65, 85, 0.6);
+    
+    /* Button variations */
+    --btn-primary: var(--accent-color);
+    --btn-secondary: var(--secondary-color);
+    --btn-success: var(--success-color);
+    --btn-danger: var(--error-color);
+    --btn-warning: var(--warning-color);
+    --btn-info: var(--info-color);
+    
+    /* Text variations */
+    --text-muted: #64748b;
+    --text-emphasized: #f1f5f9;
+    --text-link: var(--accent-color);
+    --text-link-hover: var(--accent-hover);
+}
+
+[data-theme="nord"] {
+    /* Enhanced Nordic Color Palette */
+    --success-color: #a3be8c;
+    --success-bg: rgba(163, 190, 140, 0.15);
+    --error-color: #bf616a;
+    --error-bg: rgba(191, 97, 106, 0.15);
+    --warning-color: #ebcb8b;
+    --warning-bg: rgba(235, 203, 139, 0.15);
+    --info-color: #81a1c1;
+    --info-bg: rgba(129, 161, 193, 0.15);
+    
+    --accent-secondary: #88c0d0;
+    --accent-tertiary: #b48ead;
+    --accent-quaternary: #d08770;
+    
+    --card-highlight: rgba(136, 192, 208, 0.12);
+    --card-secondary: rgba(76, 86, 106, 0.8);
+    --card-tertiary: rgba(59, 66, 82, 0.6);
+    
+    --text-muted: #4c566a;
+    --text-emphasized: #eceff4;
+    --text-link: #88c0d0;
+    --text-link-hover: #81a1c1;
+}
+
+[data-theme="evergreen"] {
+    /* Enhanced Forest Color Palette */
+    --success-color: #22c55e;
+    --success-bg: rgba(34, 197, 94, 0.15);
+    --error-color: #dc2626;
+    --error-bg: rgba(220, 38, 38, 0.15);
+    --warning-color: #eab308;
+    --warning-bg: rgba(234, 179, 8, 0.15);
+    --info-color: #0ea5e9;
+    --info-bg: rgba(14, 165, 233, 0.15);
+    
+    --accent-secondary: #16a34a;
+    --accent-tertiary: #65a30d;
+    --accent-quaternary: #ca8a04;
+    
+    --card-highlight: rgba(52, 211, 153, 0.15);
+    --card-secondary: rgba(31, 41, 55, 0.85);
+    --card-tertiary: rgba(55, 65, 81, 0.7);
+    
+    --text-muted: #6b7280;
+    --text-emphasized: #f0fdf4;
+    --text-link: #34d399;
+    --text-link-hover: #10b981;
+}
+
+[data-theme="cyberpunk"] {
+    /* Enhanced Cyberpunk Color Palette */
+    --success-color: #00ff88;
+    --success-bg: rgba(0, 255, 136, 0.15);
+    --error-color: #ff0066;
+    --error-bg: rgba(255, 0, 102, 0.15);
+    --warning-color: #ffcc00;
+    --warning-bg: rgba(255, 204, 0, 0.15);
+    --info-color: #00ccff;
+    --info-bg: rgba(0, 204, 255, 0.15);
+    
+    --accent-secondary: #ff0088;
+    --accent-tertiary: #0088ff;
+    --accent-quaternary: #8800ff;
+    
+    --card-highlight: rgba(139, 92, 246, 0.2);
+    --card-secondary: rgba(30, 27, 58, 0.9);
+    --card-tertiary: rgba(76, 29, 149, 0.3);
+    
+    --text-muted: #a78bfa;
+    --text-emphasized: #f8fafc;
+    --text-link: #8b5cf6;
+    --text-link-hover: #7c3aed;
+}
+
+[data-theme="gruvbox"] {
+    /* Enhanced Gruvbox Color Palette */
+    --success-color: #b8bb26;
+    --success-bg: rgba(184, 187, 38, 0.15);
+    --error-color: #fb4934;
+    --error-bg: rgba(251, 73, 52, 0.15);
+    --warning-color: #fe8019;
+    --warning-bg: rgba(254, 128, 25, 0.15);
+    --info-color: #83a598;
+    --info-bg: rgba(131, 165, 152, 0.15);
+    
+    --accent-secondary: #fe8019;
+    --accent-tertiary: #d3869b;
+    --accent-quaternary: #8ec07c;
+    
+    --card-highlight: rgba(250, 189, 47, 0.15);
+    --card-secondary: rgba(60, 56, 54, 0.85);
+    --card-tertiary: rgba(102, 92, 84, 0.7);
+    
+    --text-muted: #928374;
+    --text-emphasized: #fbf1c7;
+    --text-link: #fabd2f;
+    --text-link-hover: #d79921;
+}
+
+[data-theme="noctua"] {
+    /* Enhanced Noctua Color Palette */
+    --success-color: #8fbc8f;
+    --success-bg: rgba(143, 188, 143, 0.15);
+    --error-color: #cd5c5c;
+    --error-bg: rgba(205, 92, 92, 0.15);
+    --warning-color: #daa520;
+    --warning-bg: rgba(218, 165, 32, 0.15);
+    --info-color: #4682b4;
+    --info-bg: rgba(70, 130, 180, 0.15);
+    
+    --accent-secondary: #b8956a;
+    --accent-tertiary: #9c7f56;
+    --accent-quaternary: #8d6e47;
+    
+    --card-highlight: rgba(212, 165, 116, 0.15);
+    --card-secondary: rgba(45, 39, 33, 0.85);
+    --card-tertiary: rgba(84, 71, 58, 0.7);
+    
+    --text-muted: #a0936a;
+    --text-emphasized: #f5e6d3;
+    --text-link: #d4a574;
+    --text-link-hover: #b8956a;
+}
+
+[data-theme="dracula"] {
+    /* Enhanced Dracula Color Palette */
+    --success-color: #50fa7b;
+    --success-bg: rgba(80, 250, 123, 0.15);
+    --error-color: #ff5555;
+    --error-bg: rgba(255, 85, 85, 0.15);
+    --warning-color: #f1fa8c;
+    --warning-bg: rgba(241, 250, 140, 0.15);
+    --info-color: #8be9fd;
+    --info-bg: rgba(139, 233, 253, 0.15);
+    
+    --accent-secondary: #ff79c6;
+    --accent-tertiary: #8be9fd;
+    --accent-quaternary: #50fa7b;
+    
+    --card-highlight: rgba(189, 147, 249, 0.15);
+    --card-secondary: rgba(68, 71, 90, 0.85);
+    --card-tertiary: rgba(98, 114, 164, 0.5);
+    
+    --text-muted: #6272a4;
+    --text-emphasized: #f8f8f2;
+    --text-link: #bd93f9;
+    --text-link-hover: #9580ff;
+}
+
+[data-theme="forest"] {
+    /* Enhanced Forest Color Palette */
+    --success-color: #059669;
+    --success-bg: rgba(5, 150, 105, 0.15);
+    --error-color: #dc2626;
+    --error-bg: rgba(220, 38, 38, 0.15);
+    --warning-color: #d97706;
+    --warning-bg: rgba(217, 119, 6, 0.15);
+    --info-color: #0891b2;
+    --info-bg: rgba(8, 145, 178, 0.15);
+    
+    --accent-secondary: #047857;
+    --accent-tertiary: #065f46;
+    --accent-quaternary: #fbbf24;
+    
+    --card-highlight: rgba(16, 185, 129, 0.15);
+    --card-secondary: rgba(31, 41, 55, 0.85);
+    --card-tertiary: rgba(55, 65, 81, 0.7);
+    
+    --text-muted: #6b7280;
+    --text-emphasized: #d1fae5;
+    --text-link: #10b981;
+    --text-link-hover: #059669;
+}
+
+[data-theme="everforest"] {
+    /* Enhanced Everforest Color Palette */
+    --success-color: #a7c080;
+    --success-bg: rgba(167, 192, 128, 0.15);
+    --error-color: #e67e80;
+    --error-bg: rgba(230, 126, 128, 0.15);
+    --warning-color: #dbbc7f;
+    --warning-bg: rgba(219, 188, 127, 0.15);
+    --info-color: #7fbbb3;
+    --info-bg: rgba(127, 187, 179, 0.15);
+    
+    --accent-secondary: #d699b6;
+    --accent-tertiary: #83c092;
+    --accent-quaternary: #7fbbb3;
+    
+    --card-highlight: rgba(167, 192, 128, 0.15);
+    --card-secondary: rgba(45, 53, 59, 0.85);
+    --card-tertiary: rgba(64, 74, 82, 0.7);
+    
+    --text-muted: #859289;
+    --text-emphasized: #d3c6aa;
+    --text-link: #a7c080;
+    --text-link-hover: #83c092;
+}
+
+[data-theme="crimson"] {
+    /* Enhanced Crimson Color Palette */
+    --success-color: #22c55e;
+    --success-bg: rgba(34, 197, 94, 0.15);
+    --error-color: #ef4444;
+    --error-bg: rgba(239, 68, 68, 0.15);
+    --warning-color: #f59e0b;
+    --warning-bg: rgba(245, 158, 11, 0.15);
+    --info-color: #06b6d4;
+    --info-bg: rgba(6, 182, 212, 0.15);
+    
+    --accent-secondary: #f97316;
+    --accent-tertiary: #ec4899;
+    --accent-quaternary: #8b5cf6;
+    
+    --card-highlight: rgba(239, 68, 68, 0.15);
+    --card-secondary: rgba(44, 24, 16, 0.85);
+    --card-tertiary: rgba(69, 26, 3, 0.7);
+    
+    --text-muted: #a78bfa;
+    --text-emphasized: #fef2f2;
+    --text-link: #ef4444;
+    --text-link-hover: #dc2626;
+}
+
+/* Enhanced UI Elements with Better Color Usage */
+
+/* Cards with theme-aware colors */
+.card-success {
+    background: var(--success-bg);
+    border-color: var(--success-color);
+}
+
+.card-error {
+    background: var(--error-bg);
+    border-color: var(--error-color);
+}
+
+.card-warning {
+    background: var(--warning-bg);
+    border-color: var(--warning-color);
+}
+
+.card-info {
+    background: var(--info-bg);
+    border-color: var(--info-color);
+}
+
+/* Enhanced buttons */
+.btn-success {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--bg-color);
+}
+
+.btn-error {
+    background: var(--error-color);
+    border-color: var(--error-color);
+    color: white;
+}
+
+.btn-warning {
+    background: var(--warning-color);
+    border-color: var(--warning-color);
+    color: var(--bg-color);
+}
+
+.btn-info {
+    background: var(--info-color);
+    border-color: var(--info-color);
+    color: white;
+}
+
+/* Enhanced text colors */
+.text-success { color: var(--success-color) !important; }
+.text-error { color: var(--error-color) !important; }
+.text-warning { color: var(--warning-color) !important; }
+.text-info { color: var(--info-color) !important; }
+.text-muted { color: var(--text-muted) !important; }
+.text-emphasized { color: var(--text-emphasized) !important; }
+
+/* Enhanced navigation */
+.navbar-nav .nav-link {
+    color: var(--text-secondary) !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--accent-color) !important;
+}
+
+/* Enhanced section titles with better contrast */
+.section-title {
+    color: var(--text-emphasized) !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced card backgrounds with better variety */
+.highlight-card:nth-child(odd) {
+    background: var(--card-bg);
+}
+
+.highlight-card:nth-child(even) {
+    background: var(--card-secondary);
+}
+
+.highlight-card:nth-child(3n) {
+    background: var(--card-highlight);
+}
+
+/* Enhanced form elements */
+.form-control {
+    background: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.form-control:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.2rem var(--info-bg);
+}
+
+/* Enhanced badges and labels */
+.badge-success { background: var(--success-color); }
+.badge-error { background: var(--error-color); }
+.badge-warning { background: var(--warning-color); }
+.badge-info { background: var(--info-color); }
+
+.badge-success,
+.badge-error,
+.badge-warning,
+.badge-info {
+    color: white;
+    font-weight: 600;
+}
+
+/* Enhanced hero buttons with theme variety */
+.hero-btn-primary {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary)) !important;
+    border: none !important;
+    color: var(--bg-color) !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.hero-btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-hover), var(--accent-color)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.4) !important;
+}
+
+.hero-btn-secondary {
+    background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-quaternary)) !important;
+    border: none !important;
+    color: white !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.hero-btn-secondary:hover {
+    background: linear-gradient(135deg, var(--accent-quaternary), var(--accent-tertiary)) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.3) !important;
+}
+
+/* Enhanced community buttons */
+.community-btn.primary {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary)) !important;
+    border: 2px solid var(--accent-color) !important;
+    color: var(--bg-color) !important;
+}
+
+.community-btn.secondary {
+    background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-quaternary)) !important;
+    border: 2px solid var(--accent-tertiary) !important;
+    color: white !important;
+}
+
+/* Enhanced highlight cards with alternating colors */
+.highlight-card {
+    transition: all 0.3s ease !important;
+    border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
+}
+
+.highlight-card:nth-child(4n+1) {
+    background: linear-gradient(135deg, var(--card-bg), var(--card-secondary)) !important;
+    border-left: 4px solid var(--accent-color) !important;
+}
+
+.highlight-card:nth-child(4n+2) {
+    background: linear-gradient(135deg, var(--card-secondary), var(--card-highlight)) !important;
+    border-left: 4px solid var(--accent-secondary) !important;
+}
+
+.highlight-card:nth-child(4n+3) {
+    background: linear-gradient(135deg, var(--card-highlight), var(--card-tertiary)) !important;
+    border-left: 4px solid var(--accent-tertiary) !important;
+}
+
+.highlight-card:nth-child(4n) {
+    background: linear-gradient(135deg, var(--card-tertiary), var(--card-bg)) !important;
+    border-left: 4px solid var(--accent-quaternary) !important;
+}
+
+.highlight-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.2) !important;
+}
+
+/* Enhanced section backgrounds with subtle variety */
+.about-section {
+    background: linear-gradient(135deg, var(--bg-color), rgba(var(--accent-rgb), 0.05)) !important;
+}
+
+.features-section {
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.03), var(--bg-color)) !important;
+}
+
+.community-section {
+    background: linear-gradient(135deg, var(--bg-color), rgba(var(--accent-rgb), 0.08)) !important;
+}
+
+/* Enhanced route cards */
+.route-card {
+    background: linear-gradient(135deg, var(--card-bg), rgba(var(--accent-rgb), 0.1)) !important;
+    border: 1px solid rgba(var(--accent-rgb), 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.route-card:hover {
+    background: linear-gradient(135deg, var(--card-highlight), var(--card-secondary)) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(var(--accent-rgb), 0.3) !important;
+}
+
+/* Enhanced stat cards */
+.stat-card {
+    background: linear-gradient(135deg, var(--card-bg), rgba(var(--accent-rgb), 0.1)) !important;
+    border-top: 3px solid var(--accent-color) !important;
+}
+
+.stat-card:nth-child(even) {
+    border-top-color: var(--accent-secondary) !important;
+}
+
+.stat-card:nth-child(3n) {
+    border-top-color: var(--accent-tertiary) !important;
+}
+
+.stat-card:nth-child(4n) {
+    border-top-color: var(--accent-quaternary) !important;
+}
+
+/* Enhanced footer with subtle gradient */
+.footer {
+    background: linear-gradient(135deg, 
+        rgba(var(--bg-rgb), 0.95), 
+        rgba(var(--accent-rgb), 0.05), 
+        rgba(var(--bg-rgb), 0.98)
+    ) !important;
+    border-top: 1px solid rgba(var(--accent-rgb), 0.1) !important;
+}
+
+/* Enhanced auth buttons */
+.auth-btn {
+    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-color)) !important;
+    border: none !important;
+    color: var(--bg-color) !important;
+    transition: all 0.3s ease !important;
+}
+
+.auth-btn:hover {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover)) !important;
+    transform: scale(1.05) !important;
+}
+
+/* Enhanced mobile menu items */
+.mobile-nav .nav-link {
+    border-left: 3px solid transparent !important;
+    transition: all 0.3s ease !important;
+}
+
+.mobile-nav .nav-link:hover,
+.mobile-nav .nav-link.active {
+    border-left-color: var(--accent-color) !important;
+    background: rgba(var(--accent-rgb), 0.1) !important;
+}

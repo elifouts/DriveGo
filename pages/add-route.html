@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="og:title" content="DriveGo - Add Your Route">
+    <meta name="og:description" content="Share your favorite driving route with the DriveGo community. Help fellow car enthusiasts discover new adventures.">
+    <title>Add Route - DriveGo</title>
+    <link rel="icon" id="favicon" href="../assets/images/favicon.svg" type="image/svg+xml">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="../lib/WOW-master/css/libs/animate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="../lib/slick-1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="../lib/slick-1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="../lib/bootstrap-5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-themes.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-color-palette.css">
+    <link rel="stylesheet" href="../assets/css/theme-indicator.css">
+    <link rel="stylesheet" href="../assets/css/theme-indicator.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-ui.css">
+    <link rel="stylesheet" href="../assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/enhanced-animations.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/auth-styles.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/transparency-override.css">
+    <link rel="stylesheet" href="../assets/css/background-fixes.css">
+    
+    <style>
+        .form-container {
+            background: var(--secondary_color);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            color: var(--text_color);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--default_color);
+            border: 2px solid var(--primary_color);
+            color: var(--text_color);
+            border-radius: 8px;
+            padding: 12px 15px;
+            width: 100%;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent_color);
+            box-shadow: 0 0 0 3px rgba(69, 133, 136, 0.2);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .difficulty-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .difficulty-option {
+            background: var(--default_color);
+            border: 2px solid var(--primary_color);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .difficulty-option:hover {
+            border-color: var(--accent_color);
+            transform: translateY(-2px);
+        }
+        
+        .difficulty-option.selected {
+            border-color: var(--accent_color);
+            background: rgba(69, 133, 136, 0.1);
+        }
+        
+        .difficulty-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            cursor: pointer;
+        }
+        
+        .difficulty-label {
+            color: var(--text_color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .difficulty-desc {
+            color: var(--primary_color);
+            font-size: 12px;
+        }
+        
+        .upload-area {
+            border: 2px dashed var(--primary_color);
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            background: var(--default_color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--accent_color);
+            background: rgba(69, 133, 136, 0.05);
+        }
+        
+        .upload-area.dragover {
+            border-color: var(--accent_color);
+            background: rgba(69, 133, 136, 0.1);
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: var(--accent_color);
+            margin-bottom: 15px;
+        }
+        
+        .upload-text {
+            color: var(--text_color);
+            margin-bottom: 5px;
+        }
+        
+        .upload-subtext {
+            color: var(--primary_color);
+            font-size: 14px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .preview-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .preview-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .preview-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(220, 53, 69, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .form-tips {
+            background: rgba(69, 133, 136, 0.1);
+            border: 1px solid var(--accent_color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .form-tips h5 {
+            color: var(--accent_color);
+            margin-bottom: 15px;
+        }
+        
+        .form-tips ul {
+            color: var(--text_color);
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .form-tips li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+        <!-- Header Start -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <nav class="header-nav">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a href="../index.html" class="logo-link">
+                        <span class="drivego-logo">DriveGo</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="header-nav-items">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="routes.html" class="nav-link">Routes</a></li>
+                        <li class="nav-item"><a href="map.html" class="nav-link">Map</a></li>
+                        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="contact.html" class="nav-link">Community</a></li>
+                        <li class="nav-item"><a href="settings.html" class="nav-link">Settings</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                        </button>
+                        <button class="auth-btn" id="auth-button">
+                            <i class="fas fa-user"></i>
+                            <span>Sign In</span>
+                        </button>
+                        <a href="add-route.html" class="cta-btn">
+                            <i class="fas fa-plus"></i>
+                            Add Route
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav" id="mobile-nav">
+                <div class="mobile-nav-content">
+                    <ul class="mobile-nav-list">
+                        <li><a href="../index.html" class="mobile-nav-link">Home</a></li>
+                        <li><a href="routes.html" class="mobile-nav-link">Routes</a></li>
+                        <li><a href="map.html" class="mobile-nav-link">Map</a></li>
+                        <li><a href="about.html" class="mobile-nav-link">About</a></li>
+                        <li><a href="contact.html" class="mobile-nav-link">Community</a></li>
+                        <li><a href="settings.html" class="mobile-nav-link">Settings</a></li>
+                        <li><a href="add-route.html" class="mobile-nav-link cta">Add Route</a></li>
+                    </ul>
+                    
+                    <div class="mobile-auth-section">
+                        <button class="mobile-theme-toggle-btn" id="mobile-theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                            Change Theme
+                        </button>
+                        <button class="mobile-auth-btn" id="mobile-auth-button">
+                            <i class="fas fa-user"></i>
+                            Sign In
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+
+    <!-- Page Header -->
+    <section class="d2c_hero_wrapper" style="padding: 120px 0 60px;">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="page-title">Share Your Route</h1>
+                <p class="page-subtitle">Help fellow car enthusiasts discover amazing driving experiences</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Route Form Section -->
+    <section class="d2c_services_wrapper">
+        <div class="container">
+            <!-- Tips -->
+            <div class="form-tips wow fadeInUp">
+                <h5><i class="fas fa-lightbulb"></i> Tips for Adding Great Routes</h5>
+                <ul>
+                    <li>Include detailed descriptions of scenic highlights and notable features</li>
+                    <li>Upload high-quality photos that showcase the route's beauty</li>
+                    <li>Be accurate about difficulty level to help other drivers prepare</li>
+                    <li>Mention best times to drive (season, time of day, weather conditions)</li>
+                    <li>Include any warnings about road conditions or restrictions</li>
+                </ul>
+            </div>
+
+            <!-- Form -->
+            <div class="form-container wow fadeInUp" data-wow-delay="0.2s">
+                <form id="addRouteForm">
+                    <!-- Route Name & Location -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="routeName">Route Name *</label>
+                            <input type="text" id="routeName" name="routeName" required placeholder="e.g., Pacific Coast Highway">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location *</label>
+                            <input type="text" id="location" name="location" required placeholder="e.g., California, USA">
+                        </div>
+                    </div>
+
+                    <!-- Starting Point & Ending Point -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startPoint">Starting Point *</label>
+                            <input type="text" id="startPoint" name="startPoint" required placeholder="e.g., San Francisco, CA">
+                        </div>
+                        <div class="form-group">
+                            <label for="endPoint">Ending Point *</label>
+                            <input type="text" id="endPoint" name="endPoint" required placeholder="e.g., Los Angeles, CA">
+                        </div>
+                    </div>
+
+                    <!-- Distance & Duration -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="distance">Distance (miles) *</label>
+                            <input type="number" id="distance" name="distance" required placeholder="0" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Estimated Drive Time *</label>
+                            <input type="text" id="duration" name="duration" required placeholder="e.g., 4 hours">
+                        </div>
+                    </div>
+
+                    <!-- Difficulty Level -->
+                    <div class="form-group">
+                        <label>Difficulty Level *</label>
+                        <div class="difficulty-options">
+                            <div class="difficulty-option">
+                                <input type="radio" name="difficulty" value="easy" id="diff-easy" required>
+                                <div class="difficulty-label">Easy</div>
+                                <div class="difficulty-desc">Smooth roads, gentle curves</div>
+                            </div>
+                            <div class="difficulty-option">
+                                <input type="radio" name="difficulty" value="moderate" id="diff-moderate">
+                                <div class="difficulty-label">Moderate</div>
+                                <div class="difficulty-desc">Some challenging sections</div>
+                            </div>
+                            <div class="difficulty-option">
+                                <input type="radio" name="difficulty" value="hard" id="diff-hard">
+                                <div class="difficulty-label">Hard</div>
+                                <div class="difficulty-desc">Steep grades, tight curves</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Route Type -->
+                    <div class="form-group">
+                        <label for="routeType">Route Type *</label>
+                        <select id="routeType" name="routeType" required>
+                            <option value="">Select route type</option>
+                            <option value="coastal">Coastal Drive</option>
+                            <option value="mountain">Mountain Road</option>
+                            <option value="forest">Forest Road</option>
+                            <option value="desert">Desert Highway</option>
+                            <option value="scenic">Scenic Byway</option>
+                            <option value="urban">Urban Route</option>
+                            <option value="rural">Rural Backroad</option>
+                        </select>
+                    </div>
+
+                    <!-- Best Season -->
+                    <div class="form-group">
+                        <label for="bestSeason">Best Season to Drive</label>
+                        <select id="bestSeason" name="bestSeason">
+                            <option value="">Any season</option>
+                            <option value="spring">Spring</option>
+                            <option value="summer">Summer</option>
+                            <option value="fall">Fall</option>
+                            <option value="winter">Winter</option>
+                        </select>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group">
+                        <label for="description">Route Description *</label>
+                        <textarea id="description" name="description" required placeholder="Describe the route, scenic highlights, notable features, road conditions, and any important tips for drivers..."></textarea>
+                    </div>
+
+                    <!-- Photo Upload -->
+                    <div class="form-group">
+                        <label>Route Photos</label>
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <div class="upload-text">Click to upload photos or drag and drop</div>
+                            <div class="upload-subtext">JPG, PNG files up to 5MB each (max 5 photos)</div>
+                            <input type="file" id="photoInput" class="file-input" multiple accept="image/*">
+                        </div>
+                        <div class="preview-container" id="previewContainer"></div>
+                    </div>
+
+                    <!-- Coordinates (Optional) -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startLat">Start Latitude (Optional)</label>
+                            <input type="number" id="startLat" name="startLat" step="0.000001" placeholder="37.7749">
+                        </div>
+                        <div class="form-group">
+                            <label for="startLng">Start Longitude (Optional)</label>
+                            <input type="number" id="startLng" name="startLng" step="0.000001" placeholder="-122.4194">
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="btn" style="padding: 15px 40px; font-size: 16px;">
+                            <i class="fas fa-plus-circle me-2"></i>Add Route
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="d2c_footer_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
+                    <a href="../index.html" class="wow fadeInUp" data-wow-delay="0.2s"><span class="drivego-logo">DriveGo</span></a>
+                    <p class="mb-0 wow fadeInUp" data-wow-delay="0.4s">The ultimate platform for car enthusiasts to discover and share epic driving routes.</p>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-md-0 wow fadeInUp">
+                    <div class="d2c_contact_details">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Quick Links</h5>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.4s">
+                            <a href="routes.html" class="d2c_icon_wrapper"><i class="fas fa-road"></i></a>
+                            <p class="mb-0"><a href="routes.html" style="color: var(--text_color); text-decoration: none;">Explore Routes</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.6s">
+                            <a href="map.html" class="d2c_icon_wrapper"><i class="fas fa-map"></i></a>
+                            <p class="mb-0"><a href="map.html" style="color: var(--text_color); text-decoration: none;">Interactive Map</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center wow fadeInLeft" data-wow-delay="0.8s">
+                            <a href="contact.html" class="d2c_icon_wrapper"><i class="fas fa-users"></i></a>
+                            <p class="mb-0"><a href="contact.html" style="color: var(--text_color); text-decoration: none;">Join Community</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInRight">
+                    <div class="d2c_footer_newsletter">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Stay Connected</h5>
+                        <form class="needs-validation wow fadeInUp" data-wow-delay="0.4s" novalidate>
+                            <input type="email" class="form-control" placeholder="Get route updates & news:" required>
+                            <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                        </form>
+                        <ul class="list-group list-group-horizontal wow fadeInUp" data-wow-delay="0.6s">
+                            <li class="wow fadeInLeft" data-wow-delay="0.8s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1.2s">
+                                <a href="#" class="d2c_icon_wrapper"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="d2c_copy_right_wrapper wow fadeInUp" data-wow-delay="0.5s">
+                <p class="mb-0 text-center">Copyright &copy; 2025 DriveGo. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../lib/WOW-master/dist/wow.min.js"></script>
+    <script src="../lib/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/slick-1.8.1/slick/slick.min.js"></script>
+
+    <script src="../assets/js/themes.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/simple-theme-toggle.js"></script>
+    <script src="../assets/js/email-popup.js"></script>
+
+    <script>
+        // Difficulty option selection
+        document.querySelectorAll('.difficulty-option').forEach(option => {
+            option.addEventListener('click', function() {
+                // Remove selected class from all options
+                document.querySelectorAll('.difficulty-option').forEach(opt => opt.removeClass('selected'));
+                
+                // Add selected class to clicked option
+                this.classList.add('selected');
+                
+                // Check the radio button
+                const radio = this.querySelector('input[type="radio"]');
+                radio.checked = true;
+            });
+        });
+
+        // File upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('photoInput');
+        const previewContainer = document.getElementById('previewContainer');
+        let uploadedFiles = [];
+
+        // Click to upload
+        uploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Drag and drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = Array.from(e.dataTransfer.files);
+            handleFiles(files);
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        });
+
+        // Handle files
+        function handleFiles(files) {
+            files.forEach(file => {
+                if (file.type.startsWith('image/') && uploadedFiles.length < 5) {
+                    uploadedFiles.push(file);
+                    createImagePreview(file);
+                }
+            });
+        }
+
+        // Create image preview
+        function createImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                previewItem.innerHTML = `
+                    <img src="${e.target.result}" alt="Preview">
+                    <button type="button" class="preview-remove" onclick="removeImage(this, '${file.name}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                previewContainer.appendChild(previewItem);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Remove image
+        function removeImage(button, fileName) {
+            button.parentElement.remove();
+            uploadedFiles = uploadedFiles.filter(file => file.name !== fileName);
+        }
+
+        // Form submission
+        document.getElementById('addRouteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Add uploaded files
+            uploadedFiles.forEach((file, index) => {
+                formData.append(`photo_${index}`, file);
+            });
+
+            // In a real app, you would send this to your server
+            alert('Route submitted successfully!\n\nIn a real application, this would:\n- Validate all the data\n- Upload photos to a server\n- Save route to database\n- Add route to the map\n- Notify the community');
+            
+            // Reset form
+            this.reset();
+            previewContainer.innerHTML = '';
+            uploadedFiles = [];
+            document.querySelectorAll('.difficulty-option').forEach(opt => opt.classList.remove('selected'));
+        });
+
+        // Auto-populate coordinates from address (demo)
+        document.getElementById('startPoint').addEventListener('blur', function() {
+            const address = this.value;
+            if (address && !document.getElementById('startLat').value) {
+                // In a real app, you'd use a geocoding service
+                // For demo, we'll just show a message
+                console.log(`Would geocode: ${address}`);
+            }
+        });
+    </script>
+    <script src="../assets/js/auth-handler.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

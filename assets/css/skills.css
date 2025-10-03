@@ -1,0 +1,143 @@
+/* Programming Languages Skills Section Styles */
+.skills-section {
+    padding: 80px 0;
+    background: none;
+    position: relative;
+    z-index: 1;
+    color: var(--primary_color);
+}
+
+.skills-section::before {
+    content: none; /* Remove the semi-transparent overlay completely */
+}
+
+.skill-category {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.skill-category h3 {
+    color: var(--accent_color);
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+.skill-category h2 {
+    color: var(--primary_color);
+}
+
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    background: var(--secondary_color);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--primary_color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+}
+
+.skill-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.skill-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: rgba(69, 133, 136, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.skill-icon i {
+    font-size: 20px;
+    color: var(--secondary_color);
+}
+
+.skill-info h4 {
+    color: var(--text_color);
+    margin: 0;
+    font-size: 18px;
+}
+
+.skill-level {
+    margin-top: 5px;
+    font-size: 14px;
+    color: var(--accent_color);
+}
+
+.skill-bar {
+    height: 6px;
+    background: var(--default_color);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.skill-progress {
+    height: 100%;
+    background: var(--primary_color);
+    border-radius: 3px;
+    transition: width 1s ease-in-out;
+}
+
+.skill-details {
+    margin-top: 10px;
+    font-size: 14px;
+    color: var(--text_color);
+}
+
+/* Experience badges */
+.experience-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    background: var(--primary_color);
+    color: var(--secondary_color);
+}
+
+/* Skill categories */
+.frontend-card { border-left: 4px solid #b8bb26; }
+.backend-card { border-left: 4px solid #83a598; }
+.database-card { border-left: 4px solid #d3869b; }
+.tools-card { border-left: 4px solid #fe8019; }
+
+/* Animated skill bars */
+@keyframes skillFill {
+    from { width: 0; }
+    to { width: var(--skill-level); }
+}
+
+.skill-progress {
+    animation: skillFill 1.5s ease-out forwards;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .skill-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-card {
+        margin-bottom: 15px;
+    }
+}

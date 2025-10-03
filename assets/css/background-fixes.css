@@ -1,0 +1,64 @@
+/* FOOTER AND BACKGROUND FIXES */
+
+/* Ensure footer backgrounds work on all pages */
+.footer-section {
+    background: var(--section_bg) !important;
+    border-top: 1px solid rgba(var(--primary-rgb), 0.1) !important;
+}
+
+.footer-bg {
+    background: var(--section_bg) !important;
+}
+
+/* Fix any section background issues */
+.section, .d2c_services_wrapper, .d2c_hero_wrapper, .featured-routes-section {
+    background: var(--section_bg) !important;
+    position: relative !important;
+}
+
+/* Ensure proper spacing */
+body {
+    padding-top: 70px !important;
+}
+
+body.home-page {
+    padding-top: 0 !important;
+}
+
+/* Fix page content spacing */
+.page-content {
+    margin-top: 0 !important;
+    padding-top: 20px !important;
+}
+
+/* Ensure consistent text colors */
+.text-fix {
+    color: var(--text_color) !important;
+}
+
+/* Fix button transparency issues */
+.btn-fix, .d2c_nav_btn, .theme-toggle-btn {
+    background: var(--primary_color) !important;
+    color: var(--bg_color) !important;
+    opacity: 1 !important;
+}
+
+.btn-fix:hover, .d2c_nav_btn:hover, .theme-toggle-btn:hover {
+    background: var(--secondary_color) !important;
+    color: var(--bg_color) !important;
+    opacity: 1 !important;
+}
+
+/* Ensure map containers have proper backgrounds */
+.map-container {
+    background: var(--section_bg) !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+}
+
+/* Fix any overlay issues */
+.overlay-fix {
+    background: rgba(var(--bg-rgb), 0.9) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+}

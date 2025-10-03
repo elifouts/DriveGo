@@ -1,0 +1,901 @@
+/* Enhanced Theme System with Proper Dark/Light Mode Support */
+
+/* Default Theme Variables (Midnight Dark) - Smooth & Sensible */
+:root {
+    /* Colors */
+    --bg-color: #0f1419;
+    --bg-rgb: 15, 20, 25;
+    --primary-color: #f8fafc;
+    --secondary-color: #1e293b;
+    --accent-color: #06b6d4;
+    --accent-rgb: 6, 182, 212;
+    --accent-hover: #0891b2;
+    --text-color: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --border-rgb: 51, 65, 85;
+    --card-bg: rgba(30, 41, 59, 0.6);
+    --glass-bg-rgb: 30, 41, 59;.d2c_c2a_box p {
+    color: var(--text-color) !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Enhanced Page Title Animations - Subtle and Consistent */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes subtleGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(var(--accent-rgb), 0.3);
+    }
+    50% {
+        text-shadow: 0 0 15px rgba(var(--accent-rgb), 0.5);
+    }
+}
+
+/* Page Title Styling - Subtle and Consistent */
+.page-title {
+    animation: slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+    position: relative !important;
+    color: var(--primary-color) !important;
+    margin-bottom: 1rem !important;
+}
+
+.page-subtitle {
+    animation: fadeInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both !important;
+    color: var(--text-color) !important;
+    opacity: 0.9 !important;
+}
+
+.page-content {
+    animation: fadeInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both !important;
+    color: var(--text-secondary) !important;
+}
+
+/* Hero section title improvements */
+.hero-section h1, .about-hero h1, .service-hero h1, .contact-hero h1 {
+    animation: slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+    position: relative !important;
+}
+
+.hero-section p, .about-hero p, .service-hero p, .contact-hero p {
+    animation: fadeInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both !important;
+}
+
+/* Replace aggressive wow animations with subtle ones */
+.wow.fadeInUp {
+    animation-name: fadeInScale !important;
+    animation-duration: 0.6s !important;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Footer Load Animations for All Elements */
+@keyframes footerSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer * {
+    animation: footerSlideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+}
+
+footer .col-md-10:nth-child(1) * { animation-delay: 0.1s !important; }
+footer .col-md-6:nth-child(2) * { animation-delay: 0.2s !important; }
+footer .col-md-6:nth-child(3) * { animation-delay: 0.3s !important; }
+
+/* Social Media Icons Footer Animation */
+footer .social-icons a, footer .d2c_icon_wrapper {
+    animation: footerSlideUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+    animation-delay: 0.4s !important;
+    opacity: 0 !important;
+}
+
+footer .social-icons a:nth-child(1) { animation-delay: 0.4s !important; }
+footer .social-icons a:nth-child(2) { animation-delay: 0.5s !important; }
+footer .social-icons a:nth-child(3) { animation-delay: 0.6s !important; }
+footer .social-icons a:nth-child(4) { animation-delay: 0.7s !important; }
+
+/* Universal Enhanced Card System */
+.card, .d2c_service_single_item, .route-card, .feature-card, .testimonial-card {
+    background: rgba(var(--secondary-rgb), 0.8) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(var(--accent-rgb), 0.3) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.card::before, .d2c_service_single_item::before, .route-card::before, .feature-card::before, .testimonial-card::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, 
+        rgba(var(--accent-rgb), 0.03) 0%, 
+        transparent 40%, 
+        rgba(var(--primary-rgb), 0.03) 100%) !important;
+    z-index: 0 !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+
+.card:hover::before, .d2c_service_single_item:hover::before, .route-card:hover::before, .feature-card:hover::before, .testimonial-card:hover::before {
+    opacity: 1 !important;
+}
+
+.card:hover, .d2c_service_single_item:hover, .route-card:hover, .feature-card:hover, .testimonial-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(var(--accent-rgb), 0.6) !important;
+}
+
+.card .card-body, .d2c_service_single_item .content, .route-card .content, .feature-card .content, .testimonial-card .content {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Enhanced Image Backgrounds */
+.hero-section, .about-hero, .service-hero, .contact-hero {
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    background-position: center !important;
+    position: relative !important;
+}
+
+.hero-section::before, .about-hero::before, .service-hero::before, .contact-hero::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, 
+        rgba(var(--bg-rgb), 0.9) 0%, 
+        rgba(var(--secondary-rgb), 0.85) 50%, 
+        rgba(var(--primary-rgb), 0.9) 100%) !important;
+    z-index: 1 !important;
+}
+
+.hero-section .container, .about-hero .container, .service-hero .container, .contact-hero .container {
+    position: relative !important;
+    z-index: 2 !important;
+} --grid-color: rgba(6, 182, 212, 0.08);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #0ea5e9;
+    --color_two: #38bdf8;
+    
+    --theme-name: 'midnight';
+    --theme-type: 'dark';
+}
+
+/* Nordic Dark - Smooth Arctic */
+[data-theme="nord"] {
+    --bg-color: #1a1d23;
+    --bg-rgb: 26, 29, 35;
+    --primary-color: #eceff4;
+    --secondary-color: #2d3748;
+    --accent-color: #67e8f9;
+    --accent-rgb: 103, 232, 249;
+    --accent-hover: #22d3ee;
+    --text-color: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --border-color: #475569;
+    --border-rgb: 71, 85, 105;
+    --card-bg: rgba(45, 55, 72, 0.6);
+    --glass-bg-rgb: 45, 55, 72;
+    --grid-color: rgba(103, 232, 249, 0.06);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #0ea5e9;
+    --color_two: #38bdf8;
+    --theme-name: 'nord';
+    --theme-type: 'dark';
+}
+
+/* Forest Dark - Natural & Smooth */
+[data-theme="evergreen"] {
+    --bg-color: #0f1b0f;
+    --bg-rgb: 15, 27, 15;
+    --primary-color: #f0fdf4;
+    --secondary-color: #1f2937;
+    --accent-color: #34d399;
+    --accent-rgb: 52, 211, 153;
+    --accent-hover: #10b981;
+    --text-color: #ecfdf5;
+    --text-secondary: #a7f3d0;
+    --border-color: #374151;
+    --border-rgb: 55, 65, 81;
+    --card-bg: rgba(31, 41, 55, 0.6);
+    --glass-bg-rgb: 31, 41, 55;
+    --grid-color: rgba(52, 211, 153, 0.08);
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #22c55e;
+    --color_two: #4ade80;
+    --theme-name: 'evergreen';
+    --theme-type: 'dark';
+}
+
+/* Neon Dark - Refined Cyber */
+[data-theme="cyberpunk"] {
+    --bg-color: #0c0c0f;
+    --bg-rgb: 12, 12, 15;
+    --primary-color: #f8fafc;
+    --secondary-color: #1e1b3a;
+    --accent-color: #8b5cf6;
+    --accent-rgb: 139, 92, 246;
+    --accent-hover: #7c3aed;
+    --text-color: #e2e8f0;
+    --text-secondary: #a78bfa;
+    --border-color: #4c1d95;
+    --border-rgb: 76, 29, 149;
+    --card-bg: rgba(30, 27, 58, 0.6);
+    --glass-bg-rgb: 30, 27, 58;
+    --grid-color: rgba(139, 92, 246, 0.1);
+    --shadow-color: rgba(139, 92, 246, 0.2);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #a855f7;
+    --color_two: #c084fc;
+    --theme-name: 'cyberpunk';
+    --theme-type: 'dark';
+}
+
+/* Gruvbox Dark - Warm Retro */
+[data-theme="gruvbox"] {
+    --bg-color: #1d2021;
+    --bg-rgb: 29, 32, 33;
+    --primary-color: #fbf1c7;
+    --secondary-color: #3c3836;
+    --accent-color: #fabd2f;
+    --accent-rgb: 250, 189, 47;
+    --accent-hover: #d79921;
+    --text-color: #ebdbb2;
+    --text-secondary: #a89984;
+    --border-color: #665c54;
+    --border-rgb: 102, 92, 84;
+    --card-bg: rgba(60, 56, 54, 0.7);
+    --glass-bg-rgb: 60, 56, 54;
+    --grid-color: rgba(250, 189, 47, 0.1);
+    --shadow-color: rgba(250, 189, 47, 0.15);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #d79921;
+    --color_two: #fe8019;
+    --theme-name: 'gruvbox';
+    --theme-type: 'dark';
+}
+
+/* Noctua Dark - Premium Brown */
+[data-theme="noctua"] {
+    --bg-color: #1a1612;
+    --bg-rgb: 26, 22, 18;
+    --primary-color: #f5e6d3;
+    --secondary-color: #2d2721;
+    --accent-color: #d4a574;
+    --accent-rgb: 212, 165, 116;
+    --accent-hover: #b8956a;
+    --text-color: #e8d5c0;
+    --text-secondary: #c4a980;
+    --border-color: #54473a;
+    --border-rgb: 84, 71, 58;
+    --card-bg: rgba(45, 39, 33, 0.7);
+    --glass-bg-rgb: 45, 39, 33;
+    --grid-color: rgba(212, 165, 116, 0.1);
+    --shadow-color: rgba(212, 165, 116, 0.15);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #b8956a;
+    --color_two: #9c7f56;
+    --theme-name: 'noctua';
+    --theme-type: 'dark';
+}
+
+/* Dracula Dark - Gothic Purple */
+[data-theme="dracula"] {
+    --bg-color: #282a36;
+    --bg-rgb: 40, 42, 54;
+    --primary-color: #f8f8f2;
+    --secondary-color: #44475a;
+    --accent-color: #bd93f9;
+    --accent-rgb: 189, 147, 249;
+    --accent-hover: #9580ff;
+    --text-color: #f8f8f2;
+    --text-secondary: #6272a4;
+    --border-color: #6272a4;
+    --border-rgb: 98, 114, 164;
+    --card-bg: rgba(68, 71, 90, 0.7);
+    --glass-bg-rgb: 68, 71, 90;
+    --grid-color: rgba(189, 147, 249, 0.1);
+    --shadow-color: rgba(189, 147, 249, 0.2);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #ff79c6;
+    --color_two: #8be9fd;
+    --theme-name: 'dracula';
+    --theme-type: 'dark';
+}
+
+/* Forest Dark - Natural Emerald */
+[data-theme="forest"] {
+    --bg-color: #0f1a14;
+    --bg-rgb: 15, 26, 20;
+    --primary-color: #d1fae5;
+    --secondary-color: #1f2937;
+    --accent-color: #34d399;
+    --accent-rgb: 52, 211, 153;
+    --accent-hover: #10b981;
+    --text-color: #e5f3ea;
+    --text-secondary: #9ca3af;
+    --border-color: #374151;
+    --border-rgb: 55, 65, 81;
+    --card-bg: rgba(31, 41, 55, 0.7);
+    --glass-bg-rgb: 31, 41, 55;
+    --grid-color: rgba(52, 211, 153, 0.1);
+    --shadow-color: rgba(52, 211, 153, 0.15);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #10b981;
+    --color_two: #22c55e;
+    --theme-name: 'forest';
+    --theme-type: 'dark';
+}
+
+/* Everforest Dark - Serene Forest Greens */
+[data-theme="everforest"] {
+    --bg-color: #2d353b;
+    --bg-rgb: 45, 53, 59;
+    --primary-color: #d3c6aa;
+    --secondary-color: #3d484d;
+    --accent-color: #a7c080;
+    --accent-rgb: 167, 192, 128;
+    --accent-hover: #83c092;
+    --text-color: #d3c6aa;
+    --text-secondary: #859289;
+    --border-color: #543a48;
+    --border-rgb: 84, 58, 72;
+    --card-bg: rgba(61, 72, 77, 0.7);
+    --glass-bg-rgb: 61, 72, 77;
+    --grid-color: rgba(167, 192, 128, 0.1);
+    --shadow-color: rgba(167, 192, 128, 0.15);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #83c092;
+    --color_two: #7fbbb3;
+    --theme-name: 'everforest';
+    --theme-type: 'dark';
+}
+
+/* Crimson Dark - Bold Red */
+[data-theme="crimson"] {
+    --bg-color: #1a0f0f;
+    --bg-rgb: 26, 15, 15;
+    --primary-color: #fecaca;
+    --secondary-color: #2d1b1b;
+    --accent-color: #dc2626;
+    --accent-rgb: 220, 38, 38;
+    --accent-hover: #b91c1c;
+    --text-color: #f8d7da;
+    --text-secondary: #dc2626;
+    --border-color: #4a1d1d;
+    --border-rgb: 74, 29, 29;
+    --card-bg: rgba(45, 27, 27, 0.7);
+    --glass-bg-rgb: 45, 27, 27;
+    --grid-color: rgba(220, 38, 38, 0.1);
+    --shadow-color: rgba(220, 38, 38, 0.2);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #b91c1c;
+    --color_two: #991b1b;
+    --theme-name: 'crimson';
+    --theme-type: 'dark';
+}
+
+/* Interactive Grid Background */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.grid-background canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Theme-specific grid adjustments */
+[data-theme="cyberpunk"] .grid-background {
+    opacity: 0.6;
+}
+
+[data-theme="gruvbox"] .grid-background,
+[data-theme="noctua"] .grid-background {
+    opacity: 0.5;
+}
+
+[data-theme="dracula"] .grid-background,
+[data-theme="crimson"] .grid-background {
+    opacity: 0.6;
+}
+
+/* Enhanced Card Backgrounds with Blur Effects */
+.card, .route-card, .team-card, .service-card, .feature-card,
+.contact-card, .stats-card, .testimonial-card, .timeline-item,
+.form-group, .input-group, .navbar, .modal-content, .dropdown-menu {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.3) !important;
+    box-shadow: 0 8px 32px var(--shadow-color) !important;
+}
+
+/* Map and Interactive Elements */
+.map-card, .route-info-card, .marker-popup, 
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.4) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0 12px 40px var(--shadow-color) !important;
+}
+
+/* Ensure Grid Dots Remain Visible */
+.grid-background {
+    z-index: -10 !important;
+}
+
+.main-content, .page-content, .section-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure background elements work across themes */
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Text shadows for readability across all themes */
+.hero-content h1,
+.hero-content .hero-description,
+.section-title,
+.card-title {
+    text-shadow: 0 2px 4px var(--shadow-color);
+}
+
+/* Section Titles - Lighter and More Readable */
+h1, h2, h3, h4, h5, h6,
+.section-title, .hero-title, .card-title {
+    color: var(--primary-color) !important;
+    opacity: 0.95;
+}
+
+/* Copyright Section - Lighter Color */
+.d2c_copy_right_wrapper p,
+.copyright-text,
+footer p {
+    color: var(--text-secondary) !important;
+    opacity: 0.8;
+}
+
+/* Footer Logo - Theme Aware with Gradient */
+.drivego-logo {
+    font-family: 'Orbitron', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 32px !important;
+    color: var(--primary-color) !important;
+    text-decoration: none !important;
+    position: relative !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    transition: all 0.3s ease !important;
+    padding: 5px 10px !important;
+    background: linear-gradient(
+        45deg,
+        var(--accent-color) 0%,
+        var(--accent-hover) 50%,
+        var(--accent-color) 100%
+    ) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 2px 2px 4px var(--shadow-color) !important;
+}
+
+.drivego-logo::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 2px !important;
+    background: linear-gradient(
+        90deg,
+        var(--accent-color),
+        var(--accent-hover),
+        var(--accent-color)
+    ) !important;
+    transform: scaleX(0) !important;
+    transform-origin: right !important;
+    transition: transform 0.3s ease !important;
+}
+
+.drivego-logo:hover::after {
+    transform: scaleX(1) !important;
+    transform-origin: left !important;
+}
+
+/* Stay Connected Newsletter Section - Unified Simple Layout */
+.d2c_footer_newsletter {
+    background: rgba(var(--bg-rgb), 0.8) !important;
+    border: 1px solid rgba(var(--accent-rgb), 0.3) !important;
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+}
+
+.d2c_footer_newsletter:hover {
+    border-color: rgba(var(--accent-rgb), 0.5) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3) !important;
+}
+
+.d2c_footer_newsletter h5 {
+    color: var(--accent-color) !important;
+    margin-bottom: 1.5rem !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+}
+
+/* Simple stacked layout - no input groups */
+.d2c_footer_newsletter .form-control {
+    background: rgba(var(--secondary-rgb), 0.3) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.4) !important;
+    color: var(--text-color) !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    height: 44px !important;
+    width: 100% !important;
+    margin-bottom: 12px !important;
+    box-sizing: border-box !important;
+}
+
+.d2c_footer_newsletter .form-control:focus {
+    background: rgba(var(--secondary-rgb), 0.4) !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.1) !important;
+    outline: none !important;
+}
+
+.d2c_footer_newsletter .form-control::placeholder {
+    color: var(--text-secondary) !important;
+    opacity: 0.7 !important;
+}
+
+.d2c_footer_newsletter .btn {
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color)) !important;
+    border: none !important;
+    color: var(--bg-color) !important;
+    border-radius: 12px !important;
+    padding: 12px 20px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    min-height: 44px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+}
+
+.d2c_footer_newsletter .btn::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent) !important;
+    transition: left 0.6s ease !important;
+}
+
+.d2c_footer_newsletter .btn:hover::before {
+    left: 100% !important;
+}
+
+.d2c_footer_newsletter .btn:hover {
+    background: linear-gradient(135deg, var(--accent-hover), var(--primary-color)) !important;
+    box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4) !important;
+}
+
+/* Simple form layout - no complex input groups */
+.d2c_footer_newsletter form {
+    width: 100% !important;
+}
+
+/* CTA Section Box - Ready for Adventure */
+.d2c_c2a_wrapper {
+    margin-bottom: 4rem !important;
+    padding: 4rem 0 !important;
+}
+
+.d2c_c2a_box {
+    background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.9), rgba(var(--accent-rgb), 0.8)) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 2px solid rgba(var(--accent-rgb), 0.3) !important;
+    border-radius: 16px !important;
+    padding: 3rem 2rem !important;
+    box-shadow: 0 12px 40px var(--shadow-color) !important;
+    transition: all 0.4s ease !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.d2c_c2a_box::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: linear-gradient(135deg, 
+        rgba(var(--accent-rgb), 0.05) 0%, 
+        transparent 50%, 
+        rgba(var(--accent-rgb), 0.05) 100%) !important;
+    z-index: -1 !important;
+}
+
+.d2c_c2a_box:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 16px 48px var(--shadow-color) !important;
+    border-color: rgba(var(--accent-rgb), 0.5) !important;
+}
+
+.d2c_c2a_box h2 {
+    color: var(--primary-color) !important;
+    margin-bottom: 1rem !important;
+}
+
+.d2c_c2a_box p {
+    color: var(--text-secondary) !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Special theme enhancements */
+[data-theme="gruvbox"] .hero-content h1,
+[data-theme="gruvbox"] .section-title,
+[data-theme="noctua"] .hero-content h1,
+[data-theme="noctua"] .section-title {
+    text-shadow: 0 3px 6px var(--shadow-color);
+}
+
+/* Theme-specific enhancements */
+[data-theme="cyberpunk"] .logo-text {
+    text-shadow: 0 0 10px var(--accent-color);
+    animation: cyberpunkGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes cyberpunkGlow {
+    0% { 
+        text-shadow: 0 0 10px var(--accent-color);
+    }
+    100% { 
+        text-shadow: 0 0 20px var(--accent-color), 0 0 30px var(--accent-color);
+    }
+}
+
+/* Floating Button Styles - Consistent across all buttons */
+.floating-btn, .auth-btn, .cta-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 2px solid var(--accent-color);
+    border-radius: 50px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.floating-btn::before, .auth-btn::before, .cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--accent-rgb), 0.2),
+        transparent
+    );
+    transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.floating-btn:hover::before, .auth-btn:hover::before, .cta-btn:hover::before {
+    left: 100%;
+}
+
+.floating-btn:hover, .auth-btn:hover, .cta-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(var(--accent-rgb), 0.3);
+}
+
+/* Mobile floating button adjustments */
+.mobile-auth-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: rgba(var(--accent-rgb), 0.1);
+    border: 2px solid var(--accent-color);
+    border-radius: 50px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    width: 100%;
+    justify-content: center;
+}
+
+.mobile-auth-btn:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    transform: translateY(-2px);
+}
+
+/* Header specific adjustments */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Hide Add Route button when not signed in */
+.cta-btn.hidden {
+    display: none !important;
+}
+
+/* Ensure no background interference */
+.hero-banner,
+.section-animated,
+.container,
+.row,
+.col-12,
+.col-lg-6,
+.hero-content,
+.hero-visual {
+    background: transparent !important;
+    backdrop-filter: none !important;
+}
+
+/* Remove hero gradient orb blur effect */
+.hero-gradient-orb {
+    filter: none !important;
+    backdrop-filter: none !important;
+    background: radial-gradient(circle, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
+}

@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Deafult Meta Tag -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- OG Meta Tag -->
+    <meta name="robots" content="index, follow">
+    <meta name="og:title" content="DriveGo - Discover Epic Driving Routes">
+    <meta name="og:description" content="Find and share the best driving routes for car enthusiasts. Discover scenic backroads, winding mountain passes, and hidden gems near you.">
+    <meta property="og:image" content="./assets/images/drivego-og-image.jpg">
+    <!-- Title -->
+    <title>DriveGo - Discover Epic Driving Routes</title>
+    <!-- Favicon -->
+    <link rel="icon" id="favicon" href="./assets/images/favicon.svg" type="image/svg+xml" sizes="16x16">
+    <!-- Animate CSS Link -->
+    <link rel="stylesheet" href="./lib/WOW-master/css/libs/animate.css">
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 5 CDN/ Icon Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- fancybox image gallery -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <!-- Slick Slider CSS -->
+    <link rel="stylesheet" href="./lib/slick-1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="./lib/slick-1.8.1/slick/slick-theme.css">
+    <!-- Bootstarp 5 CSS -->
+    <link rel="stylesheet" href="./lib/bootstrap-5/css/bootstrap.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Enhanced Systems -->
+    <link rel="stylesheet" href="./assets/css/enhanced-themes.css">
+    <link rel="stylesheet" href="./assets/css/enhanced-color-palette.css">
+    <link rel="stylesheet" href="./assets/css/theme-indicator.css">
+    <link rel="stylesheet" href="./assets/css/enhanced-ui.css">
+    <link rel="stylesheet" href="./assets/css/glassmorphism.css">
+    <link rel="stylesheet" href="./assets/css/hero-section.css">
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/enhanced-animations.css">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <link rel="stylesheet" href="./assets/css/auth-styles.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <!-- Transparency Override - Must be last -->
+    <link rel="stylesheet" href="./assets/css/transparency-override.css">
+    <link rel="stylesheet" href="./assets/css/background-fixes.css">
+    <style>
+        .drivego-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 32px;
+            color: var(--primary_color);
+            text-decoration: none;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            background: linear-gradient(
+                45deg,
+                var(--accent-yellow, #a89984) 0%,
+                var(--accent-blue, #7c6f64) 50%,
+                var(--accent-purple, #f9f5d7) 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .drivego-logo::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                var(--accent-yellow, #a89984),
+                var(--accent-blue, #7c6f64),
+                var(--accent-purple, #f9f5d7)
+            );
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .drivego-logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .preloader .drivego-logo {
+            font-size: 48px;
+        }
+
+        /* Navigation Button Smaller Size */
+        .d2c_nav_btn {
+            font-size: 14px !important;
+            padding: 8px 24px 7px !important;
+        }
+
+        /* Reduce Top Bar Margins */
+        .d2c_navbar .container {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+
+        /* Featured Routes Cards Styles */
+        .featured-routes-section {
+            background: var(--section_bg);
+            padding: 80px 0;
+            overflow-x: hidden;
+        }
+
+        /* Universal override - works on ANY screen */
+        * {
+            box-sizing: border-box;
+        }
+        
+        .featured-routes-section * {
+            box-sizing: border-box !important;
+        }
+
+        .featured-routes-section .col {
+            padding: 0 !important;
+        }
+
+        .route-card {
+            background: #3c3836;
+            border: 1px solid var(--secondary_color);
+            border-radius: 16px;
+            padding: 18px 22px 16px 22px;
+            margin: 0 !important;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            min-width: 360px;
+            max-width: 450px;
+            width: 100% !important;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;  
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .route-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent_color);
+            background: linear-gradient(45deg, #83a598, #458588, #689d6a, #b16286);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+            z-index: 10;
+        }
+
+        .route-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent_color) 0%, var(--color_one) 50%, var(--primary_color) 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .github-repo-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .repo-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+
+        .repo-icon {
+            font-size: 24px;
+            color: var(--primary_color);
+            margin-top: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .github-repo-card:hover .repo-icon {
+            color: var(--accent_color);
+            transform: scale(1.1);
+        }
+
+        .repo-title-section {
+            flex: 1;
+        }
+
+        .repo-name {
+            color: var(--text_color);
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            transition: color 0.3s ease;
+        }
+
+        .github-repo-card:hover .repo-name {
+            color: #1d2021;
+        }
+
+        .repo-subtitle {
+            color: var(--primary_color);
+            font-size: 12px;
+            margin: 0 0 2px 0 !important;
+            line-height: 1.3;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .repo-stats-bottom {
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 4px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+            color: var(--primary_color);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .language-stat {
+            background: rgba(168, 153, 132, 0.1);
+            padding: 3px 8px;
+            border-radius: 12px;
+            border: 1px solid rgba(168, 153, 132, 0.2);
+        }
+
+        .github-repo-card:hover .language-stat {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 0, 0, 0.4);
+            color: #282828;
+        }
+
+        .github-repo-card:hover .stat-item {
+            color: #282828;
+        }
+
+        .language-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 0 1px rgba(249, 245, 215, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .github-repo-card:hover .language-dot {
+            transform: scale(1.15);
+        }
+
+        .language-dot.python { background: var(--accent_color); }
+        .language-dot.javascript { background: #fabd2f; }
+        .language-dot.typescript { background: var(--color_one); }
+        .language-dot.css { background: #d3869b; }
+        .language-dot.shell { background: #8ec07c; }
+        .language-dot.go { background: #689d6a; }
+
+        .star-stat i, .fork-stat i {
+            color: #fabd2f;
+            transition: all 0.3s ease;
+        }
+
+        .github-repo-card:hover .star-stat i {
+            transform: scale(1.2) rotate(10deg);
+            color: #1d2021;
+        }
+
+        .github-repo-card:hover .fork-stat i {
+            transform: scale(1.1);
+            color: #1d2021;
+        }
+
+        .github-repo-card:hover .repo-name {
+            color: #1d2021;
+        }
+
+        .github-repo-card:hover .repo-subtitle {
+            color: #282828;
+        }
+
+        .github-repo-card:hover .repo-icon {
+            color: #1d2021;
+        }
+
+        .repo-description-section {
+            flex: 1;
+            padding-top: 0px;
+        }
+
+        .repo-description {
+            color: var(--color_two);
+            font-size: 11px;
+            line-height: 1.3;
+            margin: 0 0 8px 0 !important;
+            font-weight: 400;
+        }
+
+        .github-repo-card:hover .repo-description {
+            color: #282828;
+        }
+
+        /* Override any global paragraph styles that might interfere */
+        .github-repo-card p {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .github-repo-card .repo-subtitle {
+            margin: 0 0 2px 0 !important;
+        }
+
+        .github-repo-card .repo-description {
+            margin: 0 0 8px 0 !important;
+        }
+
+        /* FORCE spacing with padding on wrapper - this WILL work */
+        .project-card-wrapper {
+            padding: 0 16px !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Override Slick.js styles completely */
+        .slick-slide .project-card-wrapper {
+            padding: 0 16px !important;
+        }
+
+        .slick-track .project-card-wrapper {
+            padding: 0 16px !important;
+        }
+
+        /* Make sure first and last cards also have padding */
+        .project-card-wrapper:first-child {
+            padding-left: 16px !important;
+        }
+
+        .project-card-wrapper:last-child {
+            padding-right: 16px !important;
+        }
+
+        /* Ensure slider doesn't clip hover effects */
+        .github-repo-slider {
+            overflow: visible !important;
+            padding: 10px 0 60px 0;
+        }
+
+        .github-repo-slider .slick-list {
+            overflow: visible !important;
+        }
+
+        .github-repo-slider .slick-track {
+            display: flex !important;
+            align-items: stretch;
+        }
+
+        .github-repo-slider .slick-slide {
+            height: inherit !important;
+            overflow: visible !important;
+        }
+
+        /* Hide slider dots completely */
+        .github-repo-slider .slick-dots {
+            display: none !important;
+        }
+
+        .github-repo-slider .slick-arrow {
+            z-index: 100;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .github-repo-card {
+                height: 240px;
+                padding: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .repo-stats-top {
+                gap: 10px;
+            }
+            
+            .stat-item {
+                font-size: 10px;
+            }
+            
+            .repo-name {
+                font-size: 14px;
+            }
+
+            .github-repos-section .col {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
+        
+        /* Fast Animation Styles */
+        .fast-anim.animated {
+            animation-duration: 0.6s !important;
+        }
+        
+        /* Speed up specific text animations */
+        .fast-anim.fadeInUp {
+            animation-duration: 0.5s !important;
+        }
+        
+        .fast-anim.fadeInLeft {
+            animation-duration: 0.5s !important;
+        }
+        
+        .fast-anim.fadeInRight {
+            animation-duration: 0.5s !important;
+        }
+        
+        .fast-anim.fadeInDown {
+            animation-duration: 0.5s !important;
+        }
+
+        /* Gradient animation for cards */
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Ensure slider doesn't clip hover effects */
+        .github-repo-slider {
+            overflow: visible !important;
+            padding: 10px 0 60px 0;
+        }
+
+        .github-repo-slider .slick-list {
+            overflow: visible !important;
+        }
+
+        .github-repo-slider .slick-track {
+            display: flex !important;
+            align-items: stretch;
+        }
+
+        .github-repo-slider .slick-slide {
+            height: inherit !important;
+            overflow: visible !important;
+        }
+
+        /* Route Slider Styling Only */
+        .route-slider {
+            overflow: visible !important;
+            padding: 20px 0;
+        }
+
+        .route-slider .slick-list {
+            overflow: visible !important;
+        }
+
+        .route-slider .slick-track {
+            display: flex !important;
+            align-items: stretch;
+        }
+
+        .route-slider .slick-slide {
+            height: inherit !important;
+            overflow: visible !important;
+            padding: 0 15px;
+        }
+
+        .route-slider .slick-dots {
+            display: none !important;
+        }
+
+        .route-slider .slick-arrow {
+            z-index: 100;
+        }
+
+        /* Neon glowing star and fork icons for index page */
+        .star-stat i, .fork-stat i {
+            color: var(--primary_color) !important;
+            text-shadow: 
+                0 0 5px rgba(168, 153, 132, 0.8),
+                0 0 10px rgba(168, 153, 132, 0.6),
+                0 0 15px rgba(168, 153, 132, 0.4),
+                0 0 20px rgba(168, 153, 132, 0.2) !important;
+            filter: brightness(1.2) !important;
+            transition: all 0.4s ease !important;
+        }
+
+        .github-repo-card:hover .star-stat i {
+            color: #1d2021 !important;
+            text-shadow: 
+                0 0 8px rgba(0, 0, 0, 0.9),
+                0 0 15px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(0, 0, 0, 0.3) !important;
+            filter: brightness(1.1) !important;
+            transform: scale(1.2) rotate(10deg) !important;
+        }
+
+        .github-repo-card:hover .fork-stat i {
+            color: #1d2021 !important;
+            text-shadow: 
+                0 0 8px rgba(0, 0, 0, 0.9),
+                0 0 15px rgba(0, 0, 0, 0.7),
+                0 0 20px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(0, 0, 0, 0.3) !important;
+            filter: brightness(1.1) !important;
+            transform: scale(1.1) !important;
+        }
+
+        /* Gruvbox Rainbow Border for Dotfiles Card (when NOT hovered) */
+        .github-repo-card[data-repo-url*="Dotfiles"] {
+            position: relative;
+            overflow: visible;
+            border: 2px solid transparent;
+            background: linear-gradient(#3c3836, #3c3836) padding-box,
+                        linear-gradient(
+                            45deg,
+                            #d2b48c,  /* tan */
+                            #cbb898,  /* sand */
+                            #9fb0bf,  /* slate-blue */
+                            #6f98b3,  /* steel-blue */
+                            #417899,  /* deep-blue */
+                            #2f5068,  /* navy */
+                            #6b9fbf,  /* muted-cyan */
+                            #d2b48c   /* back to tan for smooth loop */
+                        ) border-box;
+            background-size: auto, 400% 400%;
+            border-radius: 20px;
+            animation: gruvboxRainbowBorder 12s ease-in-out infinite;
+        }
+
+        .github-repo-card[data-repo-url*="Dotfiles"]:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent_color);
+            background: linear-gradient(45deg, #83a598, #458588, #689d6a, #b16286);
+            background-size: 300% 300%;
+            animation: gradientShift 3s ease infinite;
+            z-index: 10;
+        }
+
+        @keyframes gruvboxRainbowBorder {
+            0% {
+                background-position: auto, 0% 50%;
+            }
+            25% {
+                background-position: auto, 100% 50%;
+            }
+            50% {
+                background-position: auto, 100% 0%;
+            }
+            75% {
+                background-position: auto, 0% 0%;
+            }
+            100% {
+                background-position: auto, 0% 50%;
+            }
+        }
+
+        /* Remove top accent bar on Dotfiles hover (disable both ::before and ::after) */
+        .github-repo-card[data-repo-url*="Dotfiles"]:hover::before,
+        .github-repo-card[data-repo-url*="Dotfiles"]:hover::after {
+            transform: scaleX(0) !important;
+            opacity: 0 !important;
+            transition: transform 0.2s ease, opacity 0.2s ease !important;
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Page Start -->
+
+    <!--  Preloader Start  -->
+    <div class="preloader">
+        <span class="drivego-logo">DriveGo</span>
+    </div>
+    <!--  Preloader End  -->
+
+    <!-- Header Start -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <nav class="header-nav">
+                <!-- Logo -->
+                <div class="header-logo">
+                    <a href="index.html" class="logo-link">
+                        <span class="drivego-logo">DriveGo</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="header-nav-items">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="pages/routes.html" class="nav-link">Routes</a></li>
+                        <li class="nav-item"><a href="pages/map.html" class="nav-link">Map</a></li>
+                        <li class="nav-item"><a href="pages/about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="pages/contact.html" class="nav-link">Community</a></li>
+                        <li class="nav-item"><a href="pages/settings.html" class="nav-link">Settings</a></li>
+                    </ul>
+                    
+                    <div class="header-actions">
+                        <button class="theme-toggle-btn" id="theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                        </button>
+                        <button class="auth-btn" id="auth-button">
+                            <i class="fas fa-user"></i>
+                            <span>Sign In</span>
+                        </button>
+                        <a href="pages/add-route.html" class="cta-btn user-only" style="display: none;">
+                            <i class="fas fa-plus"></i>
+                            Add Route
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </button>
+            </nav>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav" id="mobile-nav">
+                <div class="mobile-nav-content">
+                    <ul class="mobile-nav-list">
+                        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+                        <li><a href="pages/routes.html" class="mobile-nav-link">Routes</a></li>
+                        <li><a href="pages/map.html" class="mobile-nav-link">Map</a></li>
+                        <li><a href="pages/about.html" class="mobile-nav-link">About</a></li>
+                        <li><a href="pages/contact.html" class="mobile-nav-link">Community</a></li>
+                        <li><a href="pages/settings.html" class="mobile-nav-link">Settings</a></li>
+                        <li class="user-only" style="display: none;"><a href="pages/add-route.html" class="mobile-nav-link cta">Add Route</a></li>
+                    </ul>
+                    
+                    <div class="mobile-auth-section">
+                        <button class="mobile-theme-toggle-btn" id="mobile-theme-toggle-btn" title="Change Theme">
+                            <i class="fas fa-palette"></i>
+                            Change Theme
+                        </button>
+                        <button class="mobile-auth-btn" id="mobile-auth-button">
+                            <i class="fas fa-user"></i>
+                            Sign In
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero Section Start -->
+    <section class="hero-banner animate-fade-in">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <div class="hero-content animate-slide-in-left">
+                        <div class="hero-badge">
+                            <i class="fas fa-route"></i>
+                            <span>Discover Epic Driving Routes</span>
+                        </div>
+                        
+                        <h1 class="hero-title">
+                            <span class="hero-greeting">Welcome to</span>
+                            <span class="hero-brand">DriveGo</span>
+                            <span class="hero-subtitle">Your Ultimate Route Discovery Platform</span>
+                        </h1>
+                        
+                        <p class="hero-description">
+                            Find and share the most scenic backroads, winding mountain passes, and hidden driving gems. Connect with fellow car enthusiasts and discover your next epic adventure.
+                        </p>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-card animate-fade-in">
+                                <div class="stat-number" data-counter="15000">0</div>
+                                <div class="stat-label">Routes Shared</div>
+                            </div>
+                            <div class="stat-card animate-fade-in">
+                                <div class="stat-number" data-counter="50000">0</div>
+                                <div class="stat-label">Miles Explored</div>
+                            </div>
+                            <div class="stat-card animate-fade-in">
+                                <div class="stat-number" data-counter="8500">0</div>
+                                <div class="stat-label">Drivers Connected</div>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-actions">
+                            <a href="pages/routes.html" class="btn hero-btn-primary">
+                                <i class="fas fa-compass"></i>
+                                Explore Routes
+                            </a>
+                            <a href="pages/map.html" class="btn hero-btn-secondary">
+                                <i class="fas fa-map-marked-alt"></i>
+                                View Map
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="hero-visual animate-slide-in-right">
+                        <div class="hero-image-container">
+                            <div class="floating-route-card card-1">
+                                <div class="route-icon">
+                                    <i class="fas fa-mountain"></i>
+                                </div>
+                                <div class="route-info">
+                                    <h4>Mountain Pass</h4>
+                                    <p>42 miles • Expert</p>
+                                </div>
+                            </div>
+                            
+                            <div class="floating-route-card card-2">
+                                <div class="route-icon">
+                                    <i class="fas fa-water"></i>
+                                </div>
+                                <div class="route-info">
+                                    <h4>Coastal Drive</h4>
+                                    <p>28 miles • Scenic</p>
+                                </div>
+                            </div>
+                            
+                            <div class="floating-route-card card-3">
+                                <div class="route-icon">
+                                    <i class="fas fa-tree"></i>
+                                </div>
+                                <div class="route-info">
+                                    <h4>Forest Route</h4>
+                                    <p>35 miles • Moderate</p>
+                                </div>
+                            </div>
+                            
+                            <div class="hero-dashboard">
+                                <div class="dashboard-header">
+                                    <h3>Route Dashboard</h3>
+                                    <div class="status-indicator active"></div>
+                                </div>
+                                <div class="dashboard-stats">
+                                    <div class="dash-stat">
+                                        <span class="value">124</span>
+                                        <span class="label">Active Routes</span>
+                                    </div>
+                                    <div class="dash-stat">
+                                        <span class="value">89%</span>
+                                        <span class="label">Success Rate</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- About Section Start -->
+    <section class="d2c_about_wrapper section-animated">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 animate-on-scroll animate-slide-left">
+                    <div class="d2c_about_img_wrapper mb-5 mb-lg-0 mx-auto mx-lg-0 image-animated">
+                        <div class="d2c_img_wrapper">
+                            <img src="./assets/images/hero_img.jpg" class="w-100 h-100 rounded-3" alt="Mountain Driving Route">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center text-lg-start animate-on-scroll animate-slide-right">
+                    <h2 class="animate-on-scroll animate-fade animate-stagger-1">Why DriveGo?</h2>
+                    <p class="mb-2 animate-on-scroll animate-fade animate-stagger-2">DriveGo is the ultimate platform for car enthusiasts who crave the perfect driving experience. We believe that the journey is just as important as the destination, and the right road can transform an ordinary drive into an unforgettable adventure.</p>
+                    <p class="d2c_about_content animate-on-scroll animate-fade animate-stagger-3">Our community-driven platform connects drivers who share a passion for scenic routes, challenging curves, and hidden automotive gems. From coastal highways to mountain passes, we help you discover the roads that make driving pure joy.</p>
+                    <h5 class="animate-on-scroll animate-fade animate-stagger-4">What Makes Us Different</h5>
+                    <p class="animate-on-scroll animate-fade animate-stagger-5">Every route on DriveGo is curated by real drivers who've experienced these roads firsthand. We provide detailed information about road conditions, difficulty levels, scenic points, and the best times to drive. Join thousands of driving enthusiasts who trust DriveGo to find their next great adventure.</p>
+                    <a href="pages/about.html" class="btn mt-3 btn-animated animate-on-scroll animate-slide-up animate-stagger-6">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+    <!-- Featured Routes Section Start -->
+    <section class="d2c_services_wrapper">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4 wow fadeInUp">
+                <div>
+                    <h2 class="text-start mb-2 wow fadeInLeft" data-wow-delay="0.1s">Featured Routes</h2>
+                    <p class="text-start mb-0 wow fadeInLeft" data-wow-delay="0.2s">Discover the most popular driving routes from our community</p>
+                </div>
+                <a href="pages/routes.html" class="btn wow fadeInRight" data-wow-delay="0.3s">See All Routes</a>
+            </div>
+            <div class="row route-slider" id="route-slider-container">
+                <!-- Route cards will be populated here -->
+
+                <!-- Sample Featured Route Cards -->
+                <div class="col project-card-wrapper wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="route-card">
+                        <div class="route-header">
+                            <i class="fas fa-road route-icon"></i>
+                            <div class="route-title-section">
+                                <h4 class="route-name">Pacific Coast Highway</h4>
+                                <p class="route-subtitle">California • 656 miles</p>
+                            </div>
+                        </div>
+                        <div class="route-stats-bottom">
+                            <div class="stat-item difficulty-stat">
+                                <i class="fas fa-star"></i>
+                                <span>Easy</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>2.1k views</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i>
+                                <span>487</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col project-card-wrapper wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="route-card">
+                        <div class="route-header">
+                            <i class="fas fa-mountain route-icon"></i>
+                            <div class="route-title-section">
+                                <h4 class="route-name">Blue Ridge Parkway</h4>
+                                <p class="route-subtitle">Virginia/NC • 469 miles</p>
+                            </div>
+                        </div>
+                        <div class="route-stats-bottom">
+                            <div class="stat-item difficulty-stat">
+                                <i class="fas fa-star"></i>
+                                <span>Moderate</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>1.8k views</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i>
+                                <span>342</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col project-card-wrapper wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="route-card">
+                        <div class="route-header">
+                            <i class="fas fa-tree route-icon"></i>
+                            <div class="route-title-section">
+                                <h4 class="route-name">Going-to-the-Sun Road</h4>
+                                <p class="route-subtitle">Montana • 50 miles</p>
+                            </div>
+                        </div>
+                        <div class="route-stats-bottom">
+                            <div class="stat-item difficulty-stat">
+                                <i class="fas fa-star"></i>
+                                <span>Hard</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-eye"></i>
+                                <span>1.2k views</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-heart"></i>
+                                <span>278</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- Featured Routes Section End -->
+
+    <!-- Community Highlights Section Start -->
+    <section class="community-showcase">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="animate-title">Community Highlights</h2>
+                <p class="animate-subtitle">Discover the most breathtaking routes shared by our passionate driving community</p>
+            </div>
+            
+            <div class="highlight-grid">
+                <div class="highlight-card featured animate-card" data-delay="0.1">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop" alt="Mountain Route">
+                        <div class="card-overlay">
+                            <div class="route-info">
+                                <h4>Alpine Mountain Pass</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Colorado Rockies</p>
+                                <div class="route-stats">
+                                    <span><i class="fas fa-star"></i> 4.9</span>
+                                    <span><i class="fas fa-eye"></i> 1.2k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-badge">Featured</div>
+                </div>
+                
+                <div class="highlight-card animate-card" data-delay="0.2">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Coastal Drive">
+                        <div class="card-overlay">
+                            <div class="route-info">
+                                <h4>Pacific Coastal</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> California</p>
+                                <div class="route-stats">
+                                    <span><i class="fas fa-star"></i> 4.8</span>
+                                    <span><i class="fas fa-eye"></i> 890</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-card animate-card" data-delay="0.3">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1544620917-4552e6b3f8d9?w=400&h=300&fit=crop" alt="Forest Road">
+                        <div class="card-overlay">
+                            <div class="route-info">
+                                <h4>Forest Canyon</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Oregon</p>
+                                <div class="route-stats">
+                                    <span><i class="fas fa-star"></i> 4.7</span>
+                                    <span><i class="fas fa-eye"></i> 654</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-card animate-card" data-delay="0.4">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1507764740877-87a2c5daadb7?w=400&h=300&fit=crop" alt="Highway View">
+                        <div class="card-overlay">
+                            <div class="route-info">
+                                <h4>Desert Highway</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Arizona</p>
+                                <div class="route-stats">
+                                    <span><i class="fas fa-star"></i> 4.6</span>
+                                    <span><i class="fas fa-eye"></i> 423</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="highlight-card animate-card" data-delay="0.5">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1440686584716-d8b66e2bc58a?w=400&h=300&fit=crop" alt="Scenic Route">
+                        <div class="card-overlay">
+                            <div class="route-info">
+                                <h4>Blue Ridge Parkway</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Virginia</p>
+                                <div class="route-stats">
+                                    <span><i class="fas fa-star"></i> 4.9</span>
+                                    <span><i class="fas fa-eye"></i> 1.5k</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="community-actions">
+                <a href="pages/routes.html" class="btn community-btn primary animate-btn">
+                    <i class="fas fa-compass"></i>
+                    <span>Explore All Routes</span>
+                </a>
+                <a href="pages/contact.html" class="btn community-btn secondary animate-btn">
+                    <i class="fas fa-users"></i>
+                    <span>Join Community</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Project Section End -->
+
+
+
+    <!-- Call To Action Section Start -->
+    <section class="d2c_c2a_wrapper text-center">
+        <div class="container">
+            <div class="d2c_c2a_box wow fadeInUp">
+                <h2 class="wow fadeInUp fast-anim" data-wow-delay="0.1s">Ready for Your Next Adventure?</h2>
+                <p class="wow fadeInUp fast-anim" data-wow-delay="0.2s">Join thousands of driving enthusiasts discovering epic routes every day.</p>
+                <a href="pages/add-route.html" class="btn wow fadeInUp" data-wow-delay="0.3s">Share Your Route</a>
+            </div>
+        </div>
+    </section>
+    <!-- Call To Action Section End -->
+
+    <!-- Spacer Section Start -->
+    <div style="height: 80px;"></div>
+    <!-- Spacer Section End -->
+
+    <!-- Footer Section Start -->
+    <footer class="d2c_footer_wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-lg-4 mb-4 mb-lg-0 wow fadeInLeft">
+                    <a href="index.html" class="wow fadeInUp" data-wow-delay="0.2s"><span class="drivego-logo">DriveGo</span></a>
+                    <p class="mb-0 wow fadeInUp" data-wow-delay="0.4s">The ultimate platform for car enthusiasts to discover and share epic driving routes. Find your next adventure on the open road.</p>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4 mb-md-0 wow fadeInUp">
+                    <div class="d2c_contact_details">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Quick Links</h5>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.4s">
+                            <a href="pages/routes.html" class="d2c_icon_wrapper"><i class="fas fa-road"></i></a>
+                            <p class="mb-0"><a href="pages/routes.html" style="color: var(--text_color); text-decoration: none;">Explore Routes</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center mb-2 wow fadeInLeft" data-wow-delay="0.6s">
+                            <a href="pages/map.html" class="d2c_icon_wrapper"><i class="fas fa-map"></i></a>
+                            <p class="mb-0"><a href="pages/map.html" style="color: var(--text_color); text-decoration: none;">Interactive Map</a></p>
+                        </div>
+                        <div class="d2c_info_wrapper d-flex align-items-center wow fadeInLeft" data-wow-delay="0.8s">
+                            <a href="pages/contact.html" class="d2c_icon_wrapper"><i class="fas fa-users"></i></a>
+                            <p class="mb-0"><a href="pages/contact.html" style="color: var(--text_color); text-decoration: none;">Join Community</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 wow fadeInRight">
+                    <div class="d2c_footer_newsletter">
+                        <h5 class="wow fadeInUp" data-wow-delay="0.2s">Stay Connected</h5>
+                        <form class="needs-validation wow fadeInUp" data-wow-delay="0.4s" novalidate>
+                            <input type="email" class="form-control" placeholder="Get route updates & news:" autocomplete="on" required>
+                            <button class="btn" type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+                        </form>
+                        <ul class="list-group list-group-horizontal wow fadeInUp" data-wow-delay="0.6s">
+                            <li class="wow fadeInLeft" data-wow-delay="0.8s">
+                                <a href="https://www.facebook.com/Designtocodes" target="_blank" class="d2c_icon_wrapper"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1s">
+                                <a href="https://twitter.com/DesignToCodes" target="_blank" class="d2c_icon_wrapper"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1.2s">
+                                <a href="https://www.linkedin.com/in/elifouts/" target="_blank" class="d2c_icon_wrapper"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                            <li class="wow fadeInLeft" data-wow-delay="1.4s">
+                                <a href="https://www.instagram.com/eli_fouts73/" target="_blank" class="d2c_icon_wrapper"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copy Right Start -->
+        <div class="container">
+            <div class="d2c_copy_right_wrapper wow fadeInUp" data-wow-delay="0.5s">
+                <p class="mb-0 text-center">Copyright &copy; 2025 DriveGo. All Rights Reserved.</p>
+            </div>
+        </div>
+        <!-- Copy Right End -->
+    </footer>
+    <!-- Footer Section End -->
+    
+    <!-- Scroll Button Start - REMOVED -->
+    <!-- <div id="scrollBtn" class="d2c_scroll_btn">
+        <a href="#">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div> -->
+    <!-- Scroll Button  End -->
+    <!-- Home Page End -->
+    
+    
+
+    <!-- JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- WOW Animation JS -->
+    <script src="./lib/WOW-master/dist/wow.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="./lib/bootstrap-5/js/bootstrap.bundle.min.js"></script>
+    <!-- fancybox Image -->
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <!-- Slick Slider JS -->
+    <script src="./lib/slick-1.8.1/slick/slick.min.js"></script>
+
+    <!-- Core JS -->
+    <script src="./assets/js/themes.js"></script>
+    <script src="./assets/js/unified-animations.js"></script>
+    <script src="./assets/js/auth-handler.js"></script>
+    <script src="./assets/js/notifications.js"></script>
+    <script src="./assets/js/enhanced-interactions.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/simple-theme-toggle.js"></script>
+    <!-- DriveGo Route Scripts -->
+    <script src="./assets/js/email-popup.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize Route Slider
+            $('.route-slider').slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 4000,
+                arrows: true,
+                // Allow each slide to use its intrinsic width and keep consistent gaps via CSS
+                variableWidth: true,
+                responsive: [
+                    {
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: false
+                        }
+                    }
+                ]
+            });
+
+            // Handle route card clicks
+            $('.route-card').on('click', function() {
+                const routeUrl = $(this).data('route-url');
+                if (routeUrl) {
+                    window.open(routeUrl, '_blank');
+                } else {
+                    // Default behavior - go to routes page
+                    window.location.href = 'pages/routes.html';
+                }
+            });
+
+            // DriveGo route functionality can be added here
+        });
+    </script>
+</body>
+</html>
+
+
+
+<!-- 
+    Website Name: DriveGo - Discover Epic Driving Routes
+    Description: The ultimate platform for car enthusiasts to discover and share epic driving routes
+    Created: 2025
+ -->

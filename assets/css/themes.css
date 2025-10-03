@@ -1,0 +1,186 @@
+/* DriveGo Theme System */
+
+/* Default Theme Variables (Gruvbox) */
+:root {
+    /* Colors */
+    --bg-color: #1d2021;
+    --bg-rgb: 29, 32, 33;
+    --primary-color: #ebdbb2;
+    --secondary-color: #504945;
+    --accent-color: #83a598;
+    --accent-rgb: 131, 165, 152;
+    --accent-hover: #7bb3a0;
+    --text-color: #f9f5d7;
+    --text-secondary: #bdae93;
+    --border-color: #504945;
+    --card-bg: rgba(80, 73, 69, 0.3);
+    --grid-color: rgba(131, 165, 152, 0.1);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #458588;
+    --color_two: #a89984;
+    
+    --theme-name: 'gruvbox';
+}
+
+/* Nord Theme */
+[data-theme="nord"] {
+    --bg-color: #2e3440;
+    --bg-rgb: 46, 52, 64;
+    --primary-color: #d8dee9;
+    --secondary-color: #3b4252;
+    --accent-color: #88c0d0;
+    --accent-rgb: 136, 192, 208;
+    --accent-hover: #7fb4c5;
+    --text-color: #eceff4;
+    --text-secondary: #d8dee9;
+    --border-color: #4c566a;
+    --card-bg: rgba(59, 66, 82, 0.3);
+    --grid-color: rgba(136, 192, 208, 0.1);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #5e81ac;
+    --color_two: #81a1c1;
+    --theme-name: 'nord';
+}
+
+/* Evergreen Theme */
+[data-theme="evergreen"] {
+    --bg-color: #1a2e1a;
+    --bg-rgb: 26, 46, 26;
+    --primary-color: #e8f5e8;
+    --secondary-color: #2d4a2d;
+    --accent-color: #7cb342;
+    --accent-rgb: 124, 179, 66;
+    --accent-hover: #689f38;
+    --text-color: #f1f8e9;
+    --text-secondary: #c8e6c9;
+    --border-color: #388e3c;
+    --card-bg: rgba(45, 74, 45, 0.3);
+    --grid-color: rgba(124, 179, 66, 0.1);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #4caf50;
+    --color_two: #8bc34a;
+    --theme-name: 'evergreen';
+}
+
+/* Cyberpunk Theme */
+[data-theme="cyberpunk"] {
+    --bg-color: #0a0a0a;
+    --bg-rgb: 10, 10, 10;
+    --primary-color: #ff00ff;
+    --secondary-color: #1a1a2e;
+    --accent-color: #00ffff;
+    --accent-rgb: 0, 255, 255;
+    --accent-hover: #00e6e6;
+    --text-color: #ffffff;
+    --text-secondary: #cccccc;
+    --border-color: #333366;
+    --card-bg: rgba(26, 26, 46, 0.3);
+    --grid-color: rgba(0, 255, 255, 0.1);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #e94560;
+    --color_two: #ff006e;
+    --theme-name: 'cyberpunk';
+}
+
+/* Minimal Theme */
+[data-theme="minimal"] {
+    --bg-color: #ffffff;
+    --bg-rgb: 255, 255, 255;
+    --primary-color: #212529;
+    --secondary-color: #f8f9fa;
+    --accent-color: #007bff;
+    --accent-rgb: 0, 123, 255;
+    --accent-hover: #0056b3;
+    --text-color: #495057;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --card-bg: rgba(248, 249, 250, 0.5);
+    --grid-color: rgba(0, 123, 255, 0.05);
+    
+    /* Legacy support */
+    --bg_one: var(--bg-color);
+    --primary_color: var(--primary-color);
+    --secondary_color: var(--secondary-color);
+    --accent_color: var(--accent-color);
+    --text_color: var(--text-color);
+    --default_color: var(--bg-color);
+    --color_one: #6c757d;
+    --color_two: #adb5bd;
+    --theme-name: 'minimal';
+}
+
+/* Interactive Grid Background */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -10;
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.grid-background canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Theme-specific grid adjustments */
+[data-theme="cyberpunk"] .grid-background {
+    opacity: 0.6;
+}
+
+[data-theme="minimal"] .grid-background {
+    opacity: 0.2;
+}
+
+/* Ensure background elements work across themes */
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Theme-specific enhancements */
+[data-theme="cyberpunk"] .logo-text {
+    text-shadow: 0 0 10px var(--accent-color);
+    animation: cyberpunkGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes cyberpunkGlow {
+    0% { 
+        text-shadow: 0 0 10px var(--accent-color);
+    }
+    100% { 
+        text-shadow: 0 0 20px var(--accent-color), 0 0 30px var(--accent-color);
+    }
+}

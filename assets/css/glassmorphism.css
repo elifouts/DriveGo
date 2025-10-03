@@ -1,0 +1,274 @@
+/* DriveGo Glassmorphism Card System */
+
+/* Enhanced Card Styles with Beautiful Glass Effects */
+.card,
+.feature-card,
+.route-card,
+.community-card,
+.service-card,
+.d2c_service_card,
+.stats-card,
+.floating-route-card,
+.hero-dashboard,
+.stat-card,
+.route-preview-card,
+.community-highlight-card,
+.adventure-card,
+.ready-card {
+    background: rgba(var(--glass-bg-rgb), 0.1) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.2) !important;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
+}
+
+.card:hover,
+.feature-card:hover,
+.route-card:hover,
+.community-card:hover,
+.service-card:hover,
+.d2c_service_card:hover,
+.stats-card:hover,
+.floating-route-card:hover,
+.stat-card:hover,
+.route-preview-card:hover,
+.community-highlight-card:hover,
+.adventure-card:hover,
+.ready-card:hover {
+    background: rgba(var(--glass-bg-rgb), 0.15) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    transform: translateY(-8px) !important;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 1px 0 rgba(var(--accent-rgb), 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(var(--accent-rgb), 0.4) !important;
+}
+
+/* Special Glass Effects for Hero Cards */
+.hero-dashboard {
+    background: rgba(var(--glass-bg-rgb), 0.08) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(var(--accent-rgb), 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Featured Routes Section Glass */
+.featured-routes-card {
+    background: rgba(var(--glass-bg-rgb), 0.12) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.25) !important;
+    border-radius: 20px !important;
+    padding: 28px !important;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+.featured-routes-card:hover {
+    background: rgba(var(--glass-bg-rgb), 0.18) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+    transform: translateY(-10px) scale(1.02) !important;
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(var(--accent-rgb), 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Community Highlight Glass Effects */
+.community-highlight {
+    background: rgba(var(--glass-bg-rgb), 0.1) !important;
+    backdrop-filter: blur(22px) !important;
+    -webkit-backdrop-filter: blur(22px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.2) !important;
+    border-radius: 18px !important;
+    box-shadow: 
+        0 12px 30px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+.community-highlight:hover {
+    background: rgba(var(--glass-bg-rgb), 0.16) !important;
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    transform: translateY(-6px) !important;
+    border-color: rgba(var(--accent-rgb), 0.35) !important;
+    box-shadow: 
+        0 18px 40px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(var(--accent-rgb), 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Ready for Adventure Card Glass */
+.ready-adventure-card {
+    background: rgba(var(--glass-bg-rgb), 0.08) !important;
+    backdrop-filter: blur(35px) !important;
+    -webkit-backdrop-filter: blur(35px) !important;
+    border: 2px solid rgba(var(--accent-rgb), 0.2) !important;
+    border-radius: 24px !important;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(var(--accent-rgb), 0.1),
+        inset 0 2px 0 rgba(255, 255, 255, 0.1) !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+.ready-adventure-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--accent-rgb), 0.3),
+        transparent
+    );
+}
+
+.ready-adventure-card:hover {
+    background: rgba(var(--glass-bg-rgb), 0.14) !important;
+    backdrop-filter: blur(40px) !important;
+    -webkit-backdrop-filter: blur(40px) !important;
+    transform: translateY(-12px) scale(1.01) !important;
+    border-color: rgba(var(--accent-rgb), 0.4) !important;
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(var(--accent-rgb), 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Form Glass Effects */
+.form-container,
+.contact-form,
+.auth-modal-content {
+    background: rgba(var(--glass-bg-rgb), 0.1) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.2) !important;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Enhanced Input Glass */
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+    background: rgba(var(--glass-bg-rgb), 0.08) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.25) !important;
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 0 0 0 rgba(var(--accent-rgb), 0) !important;
+}
+
+.form-control:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    background: rgba(var(--glass-bg-rgb), 0.12) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-color: rgba(var(--accent-rgb), 0.5) !important;
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.1),
+        0 0 0 3px rgba(var(--accent-rgb), 0.15) !important;
+}
+
+/* Dropdown Glass */
+.dropdown-menu {
+    background: rgba(var(--glass-bg-rgb), 0.12) !important;
+    backdrop-filter: blur(30px) !important;
+    -webkit-backdrop-filter: blur(30px) !important;
+    border: 1px solid rgba(var(--border-rgb), 0.25) !important;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Glass Shine Animation */
+@keyframes glassShine {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+.glass-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: glassShine 3s ease-in-out infinite;
+}
+
+/* Theme-specific glass adjustments */
+[data-theme="cyberpunk"] .card,
+[data-theme="cyberpunk"] .feature-card,
+[data-theme="cyberpunk"] .route-card {
+    box-shadow: 
+        0 8px 32px rgba(0, 255, 255, 0.1),
+        inset 0 1px 0 rgba(0, 255, 255, 0.1) !important;
+}
+
+[data-theme="cyberpunk"] .card:hover,
+[data-theme="cyberpunk"] .feature-card:hover,
+[data-theme="cyberpunk"] .route-card:hover {
+    box-shadow: 
+        0 20px 40px rgba(0, 255, 255, 0.2),
+        0 0 20px rgba(0, 255, 255, 0.1),
+        inset 0 1px 0 rgba(0, 255, 255, 0.2) !important;
+}
+
+/* Responsive Glass Effects */
+@media (max-width: 768px) {
+    .card,
+    .feature-card,
+    .route-card,
+    .community-card {
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+    }
+    
+    .card:hover,
+    .feature-card:hover,
+    .route-card:hover,
+    .community-card:hover {
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        transform: translateY(-4px) !important;
+    }
+}

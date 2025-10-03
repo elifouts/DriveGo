@@ -1,0 +1,91 @@
+<!-- DriveGo Universal Page Template -->
+<!-- This template provides consistent header structure for all pages -->
+
+<!-- Essential CSS Links (Add to <head> section) -->
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/enhanced-themes.css">
+<link rel="stylesheet" href="../assets/css/header.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+<link rel="stylesheet" href="../assets/css/auth-styles.css">
+<link rel="stylesheet" href="../assets/css/button-animation.css">
+<link rel="stylesheet" href="../assets/css/responsive.css">
+<link rel="stylesheet" href="../assets/css/transparency-override.css">
+
+<!-- Modern Header Structure (Replace old header) -->
+<div class="main-header" id="main-header">
+    <div class="container-fluid">
+        <nav class="header-nav">
+            <!-- Logo -->
+            <div class="header-logo">
+                <a href="../index.html" class="logo-link">
+                    <span class="logo-text">DriveGo</span>
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="header-nav-items">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="routes.html" class="nav-link">Routes</a></li>
+                    <li class="nav-item"><a href="map.html" class="nav-link">Map</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Community</a></li>
+                    <li class="nav-item"><a href="settings.html" class="nav-link">Settings</a></li>
+                </ul>
+                
+                <div class="header-actions">
+                    <button class="auth-btn" id="auth-button">
+                        <i class="fas fa-user"></i>
+                        <span>Sign In</span>
+                    </button>
+                    <a href="add-route.html" class="cta-btn">
+                        <i class="fas fa-plus"></i>
+                        Add Route
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+        </nav>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" id="mobile-nav">
+            <div class="mobile-nav-content">
+                <ul class="mobile-nav-list">
+                    <li><a href="../index.html" class="mobile-nav-link">Home</a></li>
+                    <li><a href="routes.html" class="mobile-nav-link">Routes</a></li>
+                    <li><a href="map.html" class="mobile-nav-link">Map</a></li>
+                    <li><a href="about.html" class="mobile-nav-link">About</a></li>
+                    <li><a href="contact.html" class="mobile-nav-link">Community</a></li>
+                    <li><a href="settings.html" class="mobile-nav-link">Settings</a></li>
+                    <li><a href="add-route.html" class="mobile-nav-link cta">Add Route</a></li>
+                </ul>
+                
+                <div class="mobile-auth-section">
+                    <button class="mobile-auth-btn" id="mobile-auth-button">
+                        <i class="fas fa-user"></i>
+                        Sign In
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Essential JS Scripts (Add before closing </body> tag) -->
+<script src="../assets/js/themes.js"></script>
+<script src="../assets/js/unified-animations.js"></script>
+<script src="../assets/js/auth-handler.js"></script>
+
+<!-- Page-specific active navigation class updates: -->
+<!-- For routes.html: Add 'active' class to Routes nav-link -->
+<!-- For map.html: Add 'active' class to Map nav-link -->
+<!-- For about.html: Add 'active' class to About nav-link -->
+<!-- For contact.html: Add 'active' class to Community nav-link -->
+<!-- For settings.html: Add 'active' class to Settings nav-link -->
+<!-- For add-route.html: Add 'active' class to Add Route nav-link -->
